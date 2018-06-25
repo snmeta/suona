@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>唢呐荟萃：乐曲</title>
+  <title>唢呐荟萃：百科</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="assets/i/favicon.png">
@@ -36,13 +36,14 @@
 		<ul class="am-nav am-nav-pills am-topbar-nav" style="font-size:15px">
 			<li><img  src="images/logo.png" alt="snhcmenta Logo"/></li>
 			<li><a href="homepage.html">首页</a></li>
-			<li class="am-active"><a href="javascript:;">唢呐乐曲</a></li>
+			<li><a href="music.php">唢呐乐曲</a></li>
 			<li><a href="qupu.php">唢呐乐谱</a></li>
 			<li><a href="video.php">唢呐视频</a></li>
 			<li><a href="person.php">唢呐名家</a></li>
-			<li><a href="baike.php">唢呐百科</a></li>
+			<li class="am-active"><a href="javascript:;">唢呐百科</a></li>
 			<li><a href="instrument.php">唢呐乐器</a></li>
 			<li><a href="article.php">唢呐文章</a></li>
+			<li><a href="news.php">唢呐新闻</a></li>
 		</ul>
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="">
 		  <div class="am-form-group">
@@ -56,11 +57,11 @@
 <div class="w1000 auto ovh">
 	<div class="column_box">
 		<!--搜索框-->
-		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="music.php" method="post">
+		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="baike.php" method="post">
 			<div class="am-form-group">  
 				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的乐曲"></input>
 				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
-				<a href="music.php" align="left"><u>返回结果页</u></a>
+				<a href="baike.php" align="left"><u>返回结果页</u></a>
 			</div>
 		</form>
 		<?php //获取搜索结果并输出
@@ -81,39 +82,31 @@
 			foreach ($result as $one){
 		?>
 				<div class="title1 cf">
-					<h2 class="fl"><b><?php echo getfield($one['music_name']);?></b></h2>
+					<h2 class="fl"><b><?php echo getfield($one['baike_name']);?></b></h2>
 				</div>
 				<table class="am-table am-table-bordered">
 					<tbody>
 						<hr>
 					<?php 
-						echo "<p>".getfield($one['music_name'])."</p>";
-						if (isset($one['music_byArtist'])){
-							echo "<p>演奏者：".getfield($one['music_byArtist'])."</p>";
+						if (isset($one['uploadDate'])){
+							$date=transdate($one['uploadDate']); 
+							$des = "更新日期：".$date['nyr'];
 						}else{
-							echo "<p>演奏者：未知</p>";
+							$des = "更新日期：暂无";
 						}
-						if (isset($one['music_about']))
-							echo "<p>乐曲说明：".getfield($one['music_about'])."</p>";
-						else
-							echo "<p>乐曲说明：暂无</p>";
-						if (isset($one['duration']))
-							echo "<p>时长：".getfield($one['duration'])."秒</p>";
-						else
-							echo "<p>时长：未知</p>";
-						if (isset($one['contentSize']))
-							echo "<p>大小：".getfield($one['contentSize'])."MB</p>";
-						else
-							echo "<p>大小：未知</p>";
-						if (isset($one['provider']))
-							echo "<p>提供者：".getfield($one['provider'])."</p>";
-						else
-							echo "<p>提供者：未知</p>";
-						if (isset($one['fileFormat']))
-							echo "<p>文件类型：".getfield($one['fileFormat'])."</p>";
-						else
-							echo "<p>文件类型：未知</p>";
-						echo '<u><a target="_blank" href="'.getfield($one['isBasedOn']).'">点击试听/下载</a></u>';
+						$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp来源：".getfield($one['resource']);
+						echo "<center>".$des."</center>";
+						if (isset($one['baike_content'])){
+							for($i=0;$i<count($one['baike_content']);$i++){
+								echo "<p>".$one['baike_content'][$i]."</p>";
+							}
+						}
+						if (isset($one['isBasedOn'])){
+							for($i=0;$i<count($one['isBasedOn']);$i++){
+								echo '<img  src="'.$one['isBasedOn'][$i].'"/>';
+								echo "<br>";
+							}
+						}
 					?>
 					</tbody>
 				</table>
