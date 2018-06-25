@@ -106,30 +106,30 @@
 				}
 				//若有，输出结果
 				else{
-					foreach ($result as $one){   ?>
-						
-							<a href="baike_detail.php?id=<?php echo getfield($one['id']);?>"><h2><b>
-							<?php echo getfield($one['baike_name']);?></b></h2></a>  
-							<!--对于不确定有的字段，先判断这个字段有没有，再取值-->
-							<?php 
-							if($keywords!="baike:*"){
-								$id = getfield($one['id']);
-								$em_content = $highlighting[$id];
-								$em_content = $em_content['baike_content'];
-								for($i=0;$i<count($em_content);$i++){
-									echo "...".$em_content[$i]."...";
-								}
+					foreach ($result as $one){   
+					?>		
+						<a href="baike_detail.php?id=<?php echo getfield($one['id']);?>"><h2><b>
+						<?php echo getfield($one['baike_name']);?></b></h2></a>  
+						<!--对于不确定有的字段，先判断这个字段有没有，再取值-->
+						<?php 
+						if($keywords!="baike:*"){
+							$id_temp = getfield($one['id']);
+							$em_content = $highlighting[$id_temp];
+							$em_content = $em_content['baike_content'];
+							for($i=0;$i<count($em_content);$i++){
+								echo "...".$em_content[$i]."...";
 							}
-							if (isset($one['uploadDate'])){
-								$date=transdate($one['uploadDate']); 
-								$date['nyr'];
-								$des = "更新日期：".$date['nyr'];
-							}else{
-								$des = "更新日期：暂无";
-							}
-							$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp来源：".getfield($one['resource']);
-							echo "<p>".$des."</p>";?>
-						<hr>
+						}
+						if (isset($one['uploadDate'])){
+							$date=transdate($one['uploadDate']); 
+							$date['nyr'];
+							$des = "更新日期：".$date['nyr'];
+						}else{
+							$des = "更新日期：暂无";
+						}
+						$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp来源：".getfield($one['resource']);
+						echo "<p>".$des."</p>";?>
+					<hr>
 			<?php	}
 				}?>	
 			</tbody>

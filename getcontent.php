@@ -30,6 +30,8 @@ function getcontent($keywords,$page){
 	if (!preg_match($re,$keywords)){
 		foreach ($docs as &$each){
 			foreach($highlighting[$each['id']] as $k=>$value){
+				if($k=="id")
+					continue;
 				$each[$k] = $value;
 			}
 		}
