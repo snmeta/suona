@@ -1,0 +1,450 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>BLOG index with sidebar & slider  | Amaze UI Examples</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/swiper.min.css">
+</head>
+
+<body id="blog">
+
+<hr>
+<!-- nav start -->
+<nav class="am-g am-g-fixed blog-fixed blog-nav">
+<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+  <div class="am-collapse am-topbar-collapse" id="blog-collapse">
+    <ul class="am-nav am-nav-pills am-topbar-nav" style="font-size:15px">
+	  <li><img  src="assets/i/logo.png" alt="snhcmenta Logo"/></li>
+	  <li class=""><a href="">首页</a></li>
+      <li class="am-active"><a href="lw-index.html">唢呐乐曲</a></li>
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" href="javascript:;">唢呐乐谱  </a></li>
+      <li><a href="lw-article.php">唢呐视频</a></li>
+      <li><a href="lw-article-fullwidth.php">唢呐名家</a></li>
+      <li><a href="lw-timeline.php">唢呐百科</a></li>
+	  <li><a href="">唢呐乐器</a></li>
+	  <li><a href="">唢呐文章</a></li>
+    </ul>
+    <form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="">
+      <div class="am-form-group">
+        <input type="text" class="am-form-field am-input-sm" placeholder="请输入需要搜索的内容">
+        <button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
+      </div>
+    </form>
+  </div>
+</nav>
+
+<!-- nav end -->
+<!-- banner start -->
+<div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
+    <div data-am-widget="slider" class="am-slider am-slider-b1" data-am-slider='{&quot;controlNav&quot;:false}' >
+    <ul class="am-slides">
+      <li>
+            <img src="assets/i/b1.jpg">
+            <div class="blog-slider-desc am-slider-desc ">
+                <div class="blog-text-center blog-slider-con">
+                    <span><a href="" class="blog-color">Song &nbsp;</a></span>               
+                    <h1 class="blog-h-margin"><a href="">唢呐乐曲1</a></h1>
+                    <p>唢呐乐曲1里面的经典词
+                    </p>
+                    <span class="blog-bor">2015/10/9</span>
+                    <br><br><br><br><br><br><br>                
+                </div>
+            </div>
+      </li>
+      <li>
+            <img src="assets/i/b2.jpg">
+            <div class="am-slider-desc blog-slider-desc">
+                <div class="blog-text-center blog-slider-con">
+                    <span><a href="" class="blog-color">Song &nbsp;</a></span>               
+                    <h1 class="blog-h-margin"><a href="">唢呐歌曲2</a></h1>
+                    <p>唢呐歌曲2里面的词
+                    </p>
+                    <span>2015/10/9</span>                
+                </div>
+            </div>
+      </li>
+      <li>
+            <img src="assets/i/b3.jpg">
+            <div class="am-slider-desc blog-slider-desc">
+                <div class="blog-text-center blog-slider-con">
+                    <span><a href="" class="blog-color">Song &nbsp;</a></span>               
+                    <h1 class="blog-h-margin"><a href="">唢呐歌曲3</a></h1>
+                    <p>唢呐歌曲3里面的词
+                    </p>
+                    <span>2015/10/9</span>                
+                </div>
+            </div>
+      </li>
+      <li>
+            <img src="assets/i/b2.jpg">
+            <div class="am-slider-desc blog-slider-desc">
+                <div class="blog-text-center blog-slider-con">
+                    <span><a href="" class="blog-color">Song &nbsp;</a></span>               
+                    <h1 class="blog-h-margin"><a href="">唢呐歌曲4</a></h1>
+                    <p>唢呐歌曲4里面的词
+                    </p>
+                    <span>2015/10/9</span>                
+                </div>
+            </div>
+      </li>
+    </ul>
+    </div>
+</div>
+<!-- banner end -->
+
+<!-- content srart -->
+<!--<div class="am-g am-g-fixed blog-fixed">
+    <div class="am-u-md-8 am-u-sm-12">
+
+        <article class="am-g blog-entry-article">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="assets/i/f10.jpg" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-article">
+                <span><a href="" class="blog-color">唢呐新闻 &nbsp;</a></span>
+                <span> @amazeUI &nbsp;</span>
+                <span>2015/10/9</span>
+                <h1><a href="">唢呐新闻1</a></h1>
+                <ul><a href="" class="">我们一直在坚持着，不是为了改变这个世界，
+				而是希望不被这个世界所改变。
+                </a></ul>
+				<!--<h1><a href="" class="">唢呐新闻2</a></h1>-->
+				<!--<ul><a href="" class="">今天的唢呐新闻是什么我也不知道呀</a></ul>
+				<h1><a href="" class="">唢呐新闻3</a></h1>
+				<ul><a href="" class="">今天的唢呐新闻是什么我还是不知道呀</a></ul>
+				<ul><a href="" class="">今天的唢呐新闻是什么我还是不知道呀</a></ul>
+				<ul><a href="" class="">今天的唢呐新闻是什么我还是不知道呀</a></ul>
+				<ul><a href="" class="">今天的唢呐新闻是什么我还是不知道呀</a></ul>
+				<ul><a href="" class="">今天的唢呐新闻是什么我还是不知道呀</a></ul>
+				<ul><a href="" class="">今天的唢呐新闻是什么我还是不知道呀</a></ul>
+                <!--<p><a href="" class="blog-continue">continue reading</a></p>
+            </div>
+        </article>-->
+		  <div class="w1000 auto ovh">
+        <div class="column_box">
+      <div class="title1 cf">
+        <h2 class="f1">新闻动态<a href=""></a></h2> 
+      </div>
+      
+      <div class="newsbox cf">
+        <div class="tra_srcimg fl">
+          <div id="news" class="swiper-container">
+            <ul class="swiper-wrapper">
+                            <li class="swiper-slide">
+                <a href="http://ggglxy.scu.edu.cn/index.php?c=article&amp;a=type&amp;tid=194" target="_blank"><img src="assets/i/x1.jpg" alt="唢呐新闻1" height="350" width="350" /></a>
+                <div class="trasrctitle1">
+                  <p class="title2">唢呐热门新闻1</p>
+                </div>
+              </li>
+                            <!--<li class="swiper-slide">
+                <a href="http://ggglxy.scu.edu.cn/index.php?c=article&amp;id=1676" target="_blank"><img src="assets/i/x2.jpg" alt=""></a>
+                <div class="trasrctitle1">
+                  <p class="title2">“悦纳自我，携手共进”公共管理学院大学生心理健康系列主题活动顺利展开</p>
+                </div>
+              </li>
+                            <li class="swiper-slide">
+                <a href="http://ggglxy.scu.edu.cn/index.php?c=article&amp;id=1674" target="_blank"><img src="assets/i/x3.jpg" alt=""></a>
+                <div class="trasrctitle1">
+                  <p class="title2">四川大学公共管理学院2018年春季博士毕业论文答辩会顺利举行</p>
+                </div>
+              </li>
+                            <li class="swiper-slide">
+                <a href="http://ggglxy.scu.edu.cn/index.php?c=article&amp;id=1664" target="_blank"><img src="assets/i/x4.jpg" alt=""></a>
+                <div class="trasrctitle1">
+                  <p class="title2">我院举行“华图优秀学生奖学金”颁奖典礼暨公务员备考交流会</p>
+                </div>
+              </li>
+                            <li class="swiper-slide">
+                <a href="http://ggglxy.scu.edu.cn/index.php?c=article&amp;id=1665" target="_blank"><img src="assets/i/x5.jpg" alt=""></a>
+                <div class="trasrctitle1">
+                  <p class="title2">2015级行政管理班级荣获四川大学“模范班级”称号</p>
+                </div>
+              </li>-->
+                          </ul>
+            <div id="news-pagination" class="swiper-pagination"></div>
+          </div>
+        </div>
+        <div class="index_newsbox fr">
+          <ul class="index_news_ul">
+                        <li><a href="/index.php?c=article&id=1676" class="fl">走进世界遗产地山东爱乐民族乐团放歌千年古桑林</a><span class="time fr">2018-05-30</span></li>
+                        <li><a href="/index.php?c=article&id=1674" class="fl">山间飘来唢呐声</a><span class="time fr">2018-05-30</span></li>
+                        <li><a href="/index.php?c=article&id=1673" class="fl">承接千载豪情内蒙古托克托奏响“晋蒙”唢呐情</a><span class="time fr">2018-05-30</span></li>
+                        <li><a href="/index.php?c=article&id=1672" class="fl">唢古呐今：唢呐艺术漫谈与赏析”讲座举行</a><span class="time fr">2018-05-30</span></li>
+                        <li><a href="/index.php?c=article&id=1671" class="fl">重庆美女用唢呐吹开中央音乐学院大门- 上游新闻·汇聚向上的力量</a><span class="time fr">2018-05-30</span></li>
+                        <li><a href="/index.php?c=article&id=1667" class="fl">中国旅游新闻网:唢呐声里的激扬青春</a><span class="time fr">2018-05-29</span></li>
+                        <li><a href="/index.php?c=article&id=1666" class="fl">静姐唢呐演艺新闻全集_静姐唢呐演艺最新资讯</a><span class="time fr">2018-05-29</span></li>
+                        <li><a href="/index.php?c=article&id=1665" class="fl">山西50多岁盲艺人李存保网络直播吹唢呐:有人喜欢就吹下去级”称号</a><span class="time fr">2018-05-29</span></li>
+                        <li><a href="/index.php?c=article&id=1664" class="fl">唢古呐今:唢呐艺术漫谈与赏析"讲座举行</a><span class="time fr">2018-05-29</span></li>
+                        <li><a href="/index.php?c=article&id=1663" class="fl">刘园村唢呐世家的孩子们:除了上学,最重要的是一早一晚吹唢呐</a><span class="time fr">2018-05-25</span></li>
+                        <li><a href="/index.php?c=article&id=1661" class="fl">心光艺术团团长陈忠的唢呐人生</a><span class="time fr">2018-05-25</span></li>
+                        <li><a href="/index.php?c=article&id=1659" class="fl">杨福建:唢呐声声</a><span class="time fr">2018-05-25</span></li>
+                      </ul>
+					   <ul class="am-pagination">
+         					<li class="am-pagination-next"><a href="">查看更多新闻 &raquo;</a>         </li>
+      				  </ul>
+        </div>
+		
+      </div>
+    </div>
+      </div>
+
+         <div class="w1000 auto ovh">
+        <div class="column_box">
+      <div class="title1 cf">
+        <h2 class="fl">唢呐名家<a href=""></a></h2> 
+      </div>
+	  <table class="leader_url">
+	  <tr>
+	  <td width="280">
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/x2.jpg" alt="唢呐名家1" height="200" width="230" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐名家一</a></p>
+	  <span style="text-align:left;display:block;">关于这大师的简介我也不足道说什么好定好</span></td>
+	  <td width="280">
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/x3.jpg" alt="唢呐名家2" height="200" width="230" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐名家二</a></p>
+	  <span style="text-align:left;display:block;">关于这大师的简介我也不足道说什么好定好</span></td>
+	  <td width="280">
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/x5.jpg" alt="唢呐名家3" height="200" width="230" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐名家三</a></p>
+	  <span style="text-align:left;display:block;">关于这大师的简介我也不足道说什么好定好</span></td> </table>
+	  <ul class="am-pagination">
+         <li class="am-pagination-next"><a href="">查看更多名家 &raquo;</a>         </li>
+      </ul>
+	  <!--<div><a href="/index.php?c=special&sid=1" style="text-align: right;">+查看更多</a></div>-->
+	 
+	  </div>
+	  </div>
+
+
+         <div class="w1000 auto ovh">
+        <div class="column_box">
+      <div class="title1 cf">
+        <h2 class="fl">唢呐热门视频</h2><a href=""> </a>
+      </div>
+	  <table class="leader_url">
+	  <tr>
+	  <td>
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/s1.png" alt="唢呐视频1" height="190" width="190" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频1</a></p>
+	  <span style="text-align:left;display:block;">唢呐入门视频第十一讲 《说唱脸谱》</span></td>
+	  <td>
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/s2.png" alt="唢呐视频2" height="190" width="190" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频2</a></p>
+	  <span style="text-align:left;display:block;">唢呐入学教程视频 第六讲《二梅子》</span></td>
+	  <td>
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/s3.png" alt="唢呐视频3" height="190" width="190" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频3</a></p>
+	  <span style="text-align:left;display:block;">唢呐入学教程视频第五讲 《音阶练习》</span></td></tr>
+	  <tr>
+	  <td>
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/s4.png" alt="唢呐视频4" height="190" width="190" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频4</a></p>
+	  <span style="text-align:left;display:block;">如何修理唢呐哨片的视频教程</span></td>
+	  <td>
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/s5.png" alt="唢呐视频5" height="190" width="190" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频5</a></p>
+	  <span style="text-align:left;display:block;">唢呐指法教学视频</span></td>
+	  <td>
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/s6.jpg" alt="唢呐视频6" height="190" width="190" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频6</a></p>
+	  <span style="text-align:left;display:block;">胡美玲唢呐启蒙教学视频第六讲 《唢呐三吹吐奏方法》</span></td>
+	  <tr>
+	  <td>
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/s7.jpg" alt="唢呐视频7" height="190" width="190" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频7</a></p>
+	  <span style="text-align:left;display:block;">胡美玲唢呐启蒙教学视频第六讲 《唢呐综合技巧练习》</span></td>
+	  <td>
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/s8.jpg" alt="唢呐视频8" height="190" width="190" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频8</a></p>
+	  <span style="text-align:left;display:block;">陈家齐唢呐教学视频第七课 《唢呐指颤音》</span></td>
+	  <td>
+	  <div class="">
+	  <a href="" target="_blank">
+	  <image src="assets/i/s9.jpg" alt="唢呐视频9" height="190" width="190" /></a>
+	  </div>
+	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频9</a></p>
+	  <span style="text-align:left;display:block;">陈家齐唢呐教学视频第十课 《唢呐F调指法》</span></td></tr></table>
+	   <ul class="am-pagination">
+         <li class="am-pagination-next"><a href="">查看更多视频 &raquo;</a>         </li>
+      </ul>
+		</div>
+		</div>
+		
+		 <div class="bgbar w100p"></div>
+         <div class="w1000 auto ovh mt20">
+    <!-- 通知公告-->
+        <!--<div class="w490 fl">
+      <div class="column_box">
+        <div class="title1 title2 cf">
+          <h2 class="fl">唢呐热门乐曲</h2>
+          <a href="/index.php?c=article&a=type&tid=76" class="fr"></a>
+        </div>
+        <!--<ul class="tz_ul">
+                    <li>
+            <span class="label">置顶推荐</span>
+            <a href="/index.php?c=article&id=1654">2018年“地方治理创新”国际学术论坛会议通知</a>
+          </li>
+                    <li>
+            <span class="label">置顶推荐</span>
+            <a href="/index.php?c=article&id=1647">四川大学公共管理学院2018年博士研究生调档函、政审表领取通知</a>
+          </li>
+                    <li>
+            <span class="label">置顶推荐</span>
+            <a href="/index.php?c=article&id=1650">四川大学公共管理学院2018年面向港澳台硕士研究生招生拟录取名单公示</a>
+          </li>
+                              <li>
+            <span>2018-03-15</span>
+            <a href="/index.php?c=article&id=1480">四川大学公共管理学院全日制MPA（西藏班）复试通知</a>
+          </li>
+                    <li>
+            <span>2018-03-15</span>
+            <a href="/index.php?c=article&id=1479">四川大学公共管理学院非全日制MPA复试通知</a>
+          </li>
+                    <li>
+            <span>2018-03-15</span>
+            <a href="/index.php?c=article&id=1478">四川大学公共管理学院全日制MPA复试通知</a>
+          </li>
+                    <li>
+            <span>2018-03-15</span>
+            <a href="/index.php?c=article&id=1476">四川大学公共管理学院2018年部分专业接受调剂信息</a>
+          </li>
+                    <li>
+            <span>2018-01-12</span>
+            <a href="/index.php?c=article&id=1450">四川大学公共管理学院专职博士后岗位招聘启事</a>
+          </li>
+                  </ul>
+        <a href="/index.php?c=article&a=type&tid=76" class="more_btn_m dn">+查看更多</a>
+      </div>
+    </div>
+
+    <div class="w1000 auto ovh">
+        <div class="column_box">
+      <div class="title1 cf">
+        <h2 class="fl">唢呐热门乐曲</h2><a href=""> </a>
+      </div>
+           <ul class="index_news_ul">
+		   <ul class="index_news_ul">
+             <li><a href="#" class="f1">乐曲1</a> <span class="time fr">2017-11-22</span></li>
+			 <li><a href="#" class="f1">乐曲2</a> <span class="time fr">2017-11-22</span></li>
+			 <li><a href="#" class="f1">乐曲3</a> <span class="time fr">2017-11-22</span></li>
+			 <li><a href="#" class="f1">乐曲4</a> <span class="time fr">2017-11-22</span></li>
+			 <li><a href="#" class="f1">乐曲5</a> <span class="time fr">2017-11-22</span></li>
+			 <li><a href="#" class="f1">乐曲6</a> <span class="time fr">2017-11-22</span></li>
+			 <!--<li><a href="#" class="f1">乐曲7</a> <span class="time fr">2017-11-22</span></li>
+			 <li><a href="#" class="f1">乐曲8</a> <span class="time fr">2017-11-22</span></li>
+			 <li><a href="#" class="f1">乐曲9</a> <span class="time fr">2017-11-22</span></li>
+			 <li><a href="#" class="f1">乐曲10</a> <span class="time fr">2017-11-22</span></li>
+		   </ul>-->
+		   <!--<ul class="am-pagination">
+         <li class="am-pagination-next"><a href="">查看更多乐曲&raquo;</a>         </li>
+      </ul>
+        </div>
+		</div>-->
+		<div class="">
+		 <ul class="am-pagination">
+         <li class="am-pagination-next"><a href="">下一页 &raquo;</a>         </li>
+      </ul>
+	  </div>
+<!-- content end -->
+
+
+
+  <!--<footer class="blog-footer">
+    <div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-footer-padding">
+        <div class="am-u-sm-12 am-u-md-4- am-u-lg-4">
+            <h3>模板简介</h3>
+            <p class="am-text-sm">这是一个使用amazeUI做的简单的前端模板。<br> 博客/ 资讯类 前端模板 <br> 支持响应式，多种布局，包括主页、文章页、媒体页、分类页等<br>嗯嗯嗯，不知道说啥了。外面的世界真精彩<br><br>
+            Amaze UI 使用 MIT 许可证发布，用户可以自由使用、复制、修改、合并、出版发行、散布、再授权及贩售 Amaze UI 及其副本。</p>
+        </div>
+        <div class="am-u-sm-12 am-u-md-4- am-u-lg-4">
+            <h3>社交账号</h3>
+            <p>
+                <a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon blog-icon"></span></a>
+                <a href=""><span class="am-icon-github am-icon-fw blog-icon blog-icon"></span></a>
+                <a href=""><span class="am-icon-weibo am-icon-fw blog-icon blog-icon"></span></a>
+                <a href=""><span class="am-icon-reddit am-icon-fw blog-icon blog-icon"></span></a>
+                <a href=""><span class="am-icon-weixin am-icon-fw blog-icon blog-icon"></span></a>
+            </p>
+            <h3>Credits</h3>
+            <p>我们追求卓越，然时间、经验、能力有限。Amaze UI 有很多不足的地方，希望大家包容、不吝赐教，给我们提意见、建议。感谢你们！</p>          
+        </div>
+        <div class="am-u-sm-12 am-u-md-4- am-u-lg-4">
+              <h1>我们站在巨人的肩膀上</h1>
+             <h3>Heroes</h3>
+            <p>
+                <ul>
+                    <li>jQuery</li>
+                    <li>Zepto.js</li>
+                    <li>Seajs</li>
+                    <li>LESS</li>
+                    <li>...</li>
+                </ul>
+            </p>
+        </div>
+    </div>    
+    <div class="blog-text-center">© 2015 AllMobilize, Inc. Licensed under MIT license. Made with love By LWXYFER</div>    
+  </footer>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+</body>
+</html>
