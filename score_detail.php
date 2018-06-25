@@ -96,7 +96,7 @@
 						else
 							$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp类型&作者：暂无";
 						$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp来源：".getfield($one['resource']);
-						echo "<center>".$des."</center>"?>
+						echo "<center>".$des."</center>";?>
 						<hr>
 			<?php
 						if (isset($one['isBasedOn']))

@@ -43,6 +43,7 @@
 			<li><a href="baike.php">唢呐百科</a></li>
 			<li><a href="instrument.php">唢呐乐器</a></li>
 			<li><a href="article.php">唢呐文章</a></li>
+			<li><a href="news.php">唢呐新闻</a></li>
 		</ul>
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="">
 		  <div class="am-form-group">
@@ -114,7 +115,7 @@
 							?>
 								<td>
 									<center><image height="150" width="150" src="<?php echo getfield($one['thumbnail']);?>"/></center>
-									<p><b><a href="video_detail.php?id=<?php echo getfield($one['id']);?>&keywords=<?php echo getfield($keywords);?>"><?php echo "<center>".getfield($one['video_caption'])."</center>";?></a></b></p>
+									<p><b><a href="video_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo "<center>".getfield($one['video_caption'])."</center>";?></a></b></p>
 									<p><?php 
 										if (isset($one['uploadDate'])){
 											$date=transdate($one['uploadDate']); 

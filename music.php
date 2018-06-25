@@ -44,6 +44,7 @@
 			<li><a href="baike.php">唢呐百科</a></li>
 			<li><a href="instrument.php">唢呐乐器</a></li>
 			<li><a href="article.php">唢呐文章</a></li>
+			<li><a href="news.php">唢呐新闻</a></li>
 		</ul>
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="">
 		  <div class="am-form-group">
@@ -114,7 +115,7 @@
 				else{
 					foreach ($result as $one){   ?>
 						<tr>
-							<td><a href="music_detail.php?id=<?php echo getfield($one['id']);?>&keywords=<?php echo getfield($keywords);?>"><?php echo getfield($one['music_name']);?></a></td>   
+							<td><a href="music_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo getfield($one['music_name']);?></a></td>   
 							<!--对于不确定有的字段，先判断这个字段有没有，再取值-->
 							<td><?php 
 								if (isset($one['music_byArtist'])){

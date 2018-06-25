@@ -43,6 +43,7 @@
 			<li><a href="baike.php">唢呐百科</a></li>
 			<li class="am-active"><a href="javascript:;">唢呐乐器</a></li>
 			<li><a href="article.php">唢呐文章</a></li>
+			<li><a href="news.php">唢呐新闻</a></li>
 		</ul>
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="">
 		  <div class="am-form-group">

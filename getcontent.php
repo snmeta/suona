@@ -39,6 +39,7 @@ function getcontent($keywords,$page){
 	$data['result'] = $docs;
 	$data['total'] = $total;
 	$data['pages'] = $pages;
+	$data['highlighting'] = $highlighting;
 	return $data;
 	
 }
