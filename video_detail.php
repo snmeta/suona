@@ -58,94 +58,65 @@
 		<!--搜索框-->
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="video.php" method="post">
 			<div class="am-form-group">  
-				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的视频" value="<?php $out=empty($_POST['keywords'])?'':$_POST['keywords'];echo $out;?>"></input>
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的视频"></input>
 				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
+				<a href="video.php" align="left"><u>返回结果页</u></a>
 			</div>
 		</form>
-		<div class="title1 cf">
-			<h2 class="fl">唢呐视频</h2><a href=""> </a>
-		</div>
-		<table class="am-table am-table-bordered">
-			<tbody>
-			<?php //获取搜索结果并输出
-				include "getcontent.php" ;
-				//获取搜索关键词
-				if (isset($_GET['keywords'])){
-					$keywords = $_GET['keywords'];
-				}else{ 
-					$keywords = empty($_POST['keywords']) ? "video:*":"video:".$_POST['keywords'];
-				}
-				//获取当前页数
-				$page = empty($_GET['page']) ? 1:$_GET['page'];
-				//获取结果和总记录数、总页数
-				$data=getcontent($keywords,$page);
-				$result = $data['result'];
-				$total = $data['total'];
-				$pages = $data['pages'];
-				echo "共".$total."条结果。";
-				//判断是否有结果
-				if (count($result)==0){
-					echo '
-					<tr>
-						<center>未找到相关内容</center>
-					</tr>';
-				}
-				//若有，输出结果
-				else{
-					$i=0;
-					for($i;$i<count($result);){
-						?>
+		<?php //获取搜索结果并输出
+		include "getdetail.php" ;
+		//获取搜索关键词
+		$keywords = "id:".$_GET['id'];
+		//获取结果
+		$result = getdetail($keywords);
+		//判断是否有结果
+		if (count($result)==0){
+			echo '
+			<tr>
+				<center>未找到相关内容</center>
+			</tr>';
+		}
+		//若有，输出结果
+		else{
+			foreach ($result as $one){
+		?>
+				<div class="title1 cf">
+					<h2 class="fl"><b><?php echo getfield($one['video_caption']);?></b></h2>
+				</div>
+				<table class="am-table am-table-bordered">
+					<tbody>
+						<hr>
 						<tr>
-						<?php
-						for($j=0;$j<5;$j++){
-							$one = $result[$i];
-							if(isset($one)){
-								$i++;
-							?>
-								<td>
-									<center><image height="150" width="150" src="<?php echo getfield($one['thumbnail']);?>"/></center>
-									<p><b><a href="video_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo "<center>".getfield($one['video_caption'])."</center>";?></a></b></p>
-									<p><?php 
-										if (isset($one['uploadDate'])){
-											$date=transdate($one['uploadDate']); 
-											echo "<center>".$date['nyr']."</center>";
-										}
-										else{
-											echo "<center>--</center>";
-										}
-									?>
-									</p>
-									<p><center><?php echo getfield($one['resource']);?></center></p>
-								</td>						
-					<?php	}
-						}
-						echo "</tr>";
-					}
-				}?>
-    
-			</tbody>
-		</table>
+							<td>
+								<center><image height="200" width="200" src="<?php echo getfield($one['thumbnail']);?>"/></center>
+							</td>
+							<td>
+					<?php 
+								echo "<p>".getfield($one['video_caption'])."</p>";
+								if (isset($one['uploadDate'])){
+									$date=transdate($one['uploadDate']); 
+									echo "<p>更新日期：".$date['nyr']."</p>";
+								}else{
+									echo "<p>更新日期：暂无</p>";
+								}
+								if (isset($one['duration']))
+									echo "<p>时长：".getfield($one['duration'])."秒</p>";
+								else
+									echo "<p>时长：未知</p>";
+								echo "<p>视频类型：".getfield($one['video_type'])."</p>";
+								echo "<p>来源：".getfield($one['resource'])."</p>";
+								echo '<u><a target="_blank" href="'.getfield($one['URL']).'">点击立即播放</a></u>';
+					?>
+								<hr>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+<?php		}
+		}?>	
 	</div>
 </div>
 
-<!-- 分页-->
-<?php
-if($total>20){
-?>
-	<div class="am-g am-g-fixed ">
-		<ul class="am-pagination am-avg-sm-8 am-g-centered">
-			<li class="am-pagination-next"><a href="<?php echo 'video.php?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a>         </li>
-			<li class="am-pagination-next"><a href="<?php echo 'video.php?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a>         </li>
-			<li class="am-pagination-next"><a href="<?php echo 'video.php?page='.($page-1).'&keywords='.$keywords;?>">上一页</a>         </li>
-			<li class="am-pagination-next"><a href="<?php echo 'video.php?page=1&keywords='.$keywords;?>">首页 </a>         </li>
-		</ul>
-	</div>
-<?php
-}
-?>
-<!-- content end -->
-
-<!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
 </body>

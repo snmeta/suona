@@ -7,7 +7,7 @@ function getcontent($keywords,$page){
 	$post = urlencode("</font>");
 	//一页显示多少条记录
 	$rows=20;
-	$start=($page-1)*$rows+1;
+	$start=($page-1)*$rows;
 	
 	
 	//获取内容

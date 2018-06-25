@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>唢呐荟萃：曲谱</title>
+  <title>唢呐荟萃：乐谱</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="assets/i/favicon.png">
@@ -36,7 +36,7 @@
 			<li><a href="homepage.html">首页</a></li>
 			<li><a href="music.php">唢呐乐曲</a></li>
 			<li class="am-active"><a href="javascript:;">唢呐乐谱</a></li>
-			<li><a href="instrument.php">唢呐视频</a></li>
+			<li><a href="video.php">唢呐视频</a></li>
 			<li><a href="person.php">唢呐名家</a></li>
 			<li><a href="baike.php">唢呐百科</a></li>
 			<li><a href="instrument.php">唢呐乐器</a></li>
@@ -50,20 +50,18 @@
     </form>
   </div>
 </nav>
-
-
 <hr>
 <div class="w1000 auto ovh">
-    <div class="column_box">
-	<!--搜索框-->
-	<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="qupu.php" method="post">
-      <div class="am-form-group">  
-        <input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的乐谱"></input>
-		<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
-		<a href="qupu.php" align="left"><u>返回结果页</u></a>
-      </div>
-    </form>
-	<?php //获取搜索结果并输出
+	<div class="column_box">
+		<!--搜索框-->
+		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="qupu.php" method="post">
+			<div class="am-form-group">  
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的乐谱"></input>
+				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
+				<a href="qupu.php" align="left"><u>返回结果页</u></a>
+			</div>
+		</form>
+		<?php //获取搜索结果并输出
 		include "getdetail.php" ;
 		//获取搜索关键词
 		$keywords = "id:".$_GET['id'];
@@ -79,40 +77,40 @@
 		//若有，输出结果
 		else{
 			foreach ($result as $one){
-	?>
-      <div class="title1 cf">
-        <h2 class="fl"><b><?php echo getfield($one['score_name']);?></b></h2>
-      </div>
-	<table class="am-table am-table-bordered">
-	<tbody>
-		<hr>
-		<?php 
-				if (isset($one['uploadDate'])){
-					$date=transdate($one['uploadDate']); 
-					$des = "更新日期：".$date['nyr'];
-				}else{
-					$des = "更新日期：暂无";
-				}
-				if (isset($one['score_type_author']))
-					$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp类型&作者：".getfield($one['score_type_author']);
-				else
-					$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp类型&作者：暂无";
-				$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp来源：".getfield($one['resource']);
-				echo "<center>".$des."</center>"?>
-			<hr>
-		<?php
-				if (isset($one['isBasedOn']))
-					for($i=0;$i<count($one['isBasedOn']);$i++){
-						echo '<img  src="'.getfield($one['isBasedOn'][$i]).'"/>';
-						echo "<br>";
-					}
-				else
-					echo "<b><center>资源丢失</center></b>";
+		?>
+				<div class="title1 cf">
+					<h2 class="fl"><b><?php echo getfield($one['score_name']);?></b></h2>
+				</div>
+				<table class="am-table am-table-bordered">
+					<tbody>
+						<hr>
+			<?php 
+						if (isset($one['uploadDate'])){
+							$date=transdate($one['uploadDate']); 
+							$des = "更新日期：".$date['nyr'];
+						}else{
+							$des = "更新日期：暂无";
+						}
+						if (isset($one['score_type_author']))
+							$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp类型&作者：".getfield($one['score_type_author']);
+						else
+							$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp类型&作者：暂无";
+						$des = $des."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp来源：".getfield($one['resource']);
+						echo "<center>".$des."</center>"?>
+						<hr>
+			<?php
+						if (isset($one['isBasedOn']))
+							for($i=0;$i<count($one['isBasedOn']);$i++){
+								echo '<img  src="'.getfield($one['isBasedOn'][$i]).'"/>';
+								echo "<br>";
+							}
+						else
+							echo "<b><center>资源丢失</center></b>";
+					echo "</tbody>";
+				echo "</table>";
 			}
 		}?>	
-    </tbody>
-</table>
-</div>
+	</div>
 </div>
 
 <script src="assets/js/jquery.min.js"></script>

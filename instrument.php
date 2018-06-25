@@ -38,16 +38,17 @@
 			<li><a href="homepage.html">首页</a></li>
 			<li><a href="music.php">唢呐乐曲</a></li>
 			<li><a href="qupu.php">唢呐乐谱</a></li>
-			<li><a href="instrument.php">唢呐视频</a></li>
+			<li><a href="video.php">唢呐视频</a></li>
 			<li><a href="person.php">唢呐名家</a></li>
 			<li><a href="baike.php">唢呐百科</a></li>
 			<li class="am-active"><a href="javascript:;">唢呐乐器</a></li>
 			<li><a href="article.php">唢呐文章</a></li>
 		</ul>
-		<form class="am-topbar-form am-topbar-right am-form-inline" role="search">
-			<div class="am-form-group">
-				<input type="text" class="am-form-field am-input-sm" placeholder="请输入需要搜索的内容">
-			</div>
+		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="">
+		  <div class="am-form-group">
+			<input type="text" class="am-form-field am-input-sm" placeholder="请输入需要搜索的内容">
+			<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
+		  </div>
 		</form>
 	</div>
 </nav>
@@ -62,7 +63,7 @@
 			</div>
 		</form>
 		<div class="title1 cf">
-			<h2 class="fl">唢呐曲谱</h2><a href=""> </a>
+			<h2 class="fl">唢呐乐器</h2><a href=""> </a>
 		</div>
 		<!-- content srart -->
 		<table class="am-table am-table-bordered">
@@ -119,15 +120,20 @@
 	</div>
 </div>
 <!-- 分页-->
-<div class="am-g am-g-fixed ">
-	<ul class="am-pagination am-avg-sm-8 am-g-centered">
-		<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.($page-1).'&keywords='.$keywords;?>">上一页</a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page=1&keywords='.$keywords;?>">首页 </a>         </li>
-	</ul>
-</div>
-	
+<?php
+if($total>20){
+?>
+	<div class="am-g am-g-fixed ">
+		<ul class="am-pagination am-avg-sm-8 am-g-centered">
+			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.$pages.'&keywords='.$keywords ;?>">尾页</a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.($page+1).'&keywords='.$keywords;?>">下一页</a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.($page-1).'&keywords='.$keywords;?>">上一页</a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page=1&keywords='.$keywords;?>">首页 </a></li>
+		</ul>
+	</div>
+<?php
+}
+?>
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
