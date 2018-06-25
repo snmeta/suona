@@ -58,7 +58,17 @@
 		<!--搜索框-->
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="video.php" method="post">
 			<div class="am-form-group">  
-				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的视频" value="<?php $out=empty($_POST['keywords'])?'':$_POST['keywords'];echo $out;?>"></input>
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的视频" value="<?php 
+				if(!empty($_POST['keywords'])){
+					$out=$_POST['keywords'];
+				}else if(!empty($_GET['keywords'])){
+					$r = explode(':',$_GET['keywords']);
+					$out = $r[1];
+				}else{
+					$out='';
+				}
+				echo $out;
+				?>"></input>
 				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
 			</div>
 		</form>
@@ -104,7 +114,7 @@
 							?>
 								<td>
 									<center><image height="150" width="150" src="<?php echo getfield($one['thumbnail']);?>"/></center>
-									<p><b><a href="video_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo "<center>".getfield($one['video_caption'])."</center>";?></a></b></p>
+									<p><b><a href="video_detail.php?id=<?php echo getfield($one['id']);?>&keywords=<?php echo getfield($keywords);?>"><?php echo "<center>".getfield($one['video_caption'])."</center>";?></a></b></p>
 									<p><?php 
 										if (isset($one['uploadDate'])){
 											$date=transdate($one['uploadDate']); 

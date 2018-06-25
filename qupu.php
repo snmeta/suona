@@ -57,7 +57,17 @@
 	<!--搜索框-->
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="qupu.php" method="post">
 			<div class="am-form-group">  
-				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的乐谱" value="<?php $out=empty($_POST['keywords'])?'':$_POST['keywords'];echo $out;?>"></input>
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的乐谱" value="<?php 
+				if(!empty($_POST['keywords'])){
+					$out=$_POST['keywords'];
+				}else if(!empty($_GET['keywords'])){
+					$r = explode(':',$_GET['keywords']);
+					$out = $r[1];
+				}else{
+					$out='';
+				}
+				echo $out;
+				?>"></input>
 				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
 			</div>
 		</form>
