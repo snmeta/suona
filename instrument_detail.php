@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>唢呐荟萃:名人堂</title>
+  <title>唢呐荟萃：乐器</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="assets/i/favicon.png">
@@ -40,9 +40,9 @@
 			<li><a href="qupu.php">唢呐乐谱</a></li>
 			<li><a href="video.php">唢呐视频</a></li>
 			<li><a href="movie.php">唢呐电影</a></li>
-			<li class="am-active"><a href="javascript:;">唢呐名家</a></li>
+			<li><a href="person.php">唢呐名家</a></li>
 			<li><a href="baike.php">唢呐百科</a></li>
-			<li><a href="instrument.php">唢呐乐器</a></li>
+			<li class="am-active"><a href="javascript:;">唢呐乐器</a></li>
 			<li><a href="article.php">唢呐文章</a></li>
 			<li><a href="news.php">唢呐新闻</a></li>
 		</ul>
@@ -68,85 +68,75 @@
 <div class="w1000 auto ovh">
 	<div class="column_box">
 		<!--搜索框-->
-		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="person.php" method="post">
+		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="instrument.php" method="post">
 			<div class="am-form-group">  
-				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的人物" value="<?php 
-				if(!empty($_POST['keywords'])){
-					$out=$_POST['keywords'];
-				}else if(!empty($_GET['keywords'])){
-					$r = explode(':',$_GET['keywords']);
-					$out = $r[1];
-				}else{
-					$out='';
-				}
-				echo $out;
-				?>"></input>
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的乐器"></input>
 				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
+				<a href="instrument.php" align="left"><u>返回结果页</u></a>
 			</div>
 		</form>
-		<div class="title1 cf">
-			<h2 class="fl">唢呐名家</h2>
-		</div>
-		<table class="am-table am-table-bordered">
-			<tbody>
-			<?php //获取搜索结果并输出
-				include "getcontent.php" ;
-				//获取搜索关键词
-				if (isset($_GET['keywords'])){
-					$keywords = $_GET['keywords'];
-				}else{ 
-					$keywords = empty($_POST['keywords']) ? "person:*":"person:".$_POST['keywords'];
-				}
-				//获取当前页数
-				$page = empty($_GET['page']) ? 1:$_GET['page'];
-				//获取结果和总记录数、总页数
-				$data=getcontent($keywords,$page);
-				$result = $data['result'];
-				$total = $data['total'];
-				$pages = $data['pages'];
-				echo "共".$total."条结果。";
-				//判断是否有结果
-				if (count($result)==0){
-					echo '
-					<tr>
-						<center>未找到相关内容</center>
-					</tr>';
-				}
-				//若有，输出结果
-				else{
-					$i=0;
-					for($i;$i<count($result);){
-						?>
-						<tr>
-						<?php
-						for($j=0;$j<5;$j++){
-							$one = $result[$i];
-							if(isset($one)){
-								$i++;
-							?>
-								<td>
-									<a href="person_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo "<center>".getfield($one['person_name'])."</center>";?></a>
-								</td>						
-					<?php	}
+		<?php //获取搜索结果并输出
+		include "getdetail.php" ;
+		//获取搜索关键词
+		$keywords = "id:".$_GET['id'];
+		//获取结果
+		$result = getdetail($keywords);
+		//判断是否有结果
+		if (count($result)==0){
+			echo '
+			<tr>
+				<center>未找到相关内容</center>
+			</tr>';
+		}
+		//若有，输出结果
+		else{
+			foreach ($result as $one){
+		?>
+				<div class="title1 cf">
+					<h2 class="fl"><b><?php echo getfield($one['instrument_name']);?></b></h2>
+				</div>
+				<table class="am-table am-table-bordered">
+					<tbody>
+						<hr>
+					<?php 
+						if (isset($one['description'])){
+							echo "<p>描述：".getfield($one['description'])."</p>";
+						}else{
+							echo "<p>描述：暂无</p>";
 						}
-						echo "</tr>";
-					}
-				}?>
-    </tbody>
-</table>
-</div>
+						if (isset($one['tone'])){
+							echo "<p>音色：";
+							for($i=0;$i<count($one['tone']);$i++){
+								echo $one['tone'][$i]."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+							}
+							echo "</p>";
+						}else{
+							echo "<p>音色：暂无</p>";
+						}
+						if (isset($one['instrument_toneRange'])){
+							echo "<p>音调范围：";
+							for($i=0;$i<count($one['instrument_toneRange']);$i++){
+								echo $one['instrument_toneRange'][$i]."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+							}
+							echo "</p>";
+						}else{
+							echo "<p>音调范围：暂无</p>";
+						}
+						if (isset($one['instrument_Price']))
+							echo "<p>价格范围：".getfield($one['instrument_Price'])."</p>";
+						else
+							echo "<p>价格范围：暂无</p>";
+						echo "<p>来源：".getfield($one['resource'])."</p>";
+					?>
+						<center><image src="<?php echo getfield($one['isBasedOn']);?>"/></center>
+						<hr>
+					</tbody>
+				</table>
+<?php		}
+		}?>	
+	</div>
 </div>
 
-<!-- 分页-->
-<div class="am-g am-g-fixed ">
-	<ul class="am-pagination am-avg-sm-8 am-g-centered">
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page-1).'&keywords='.$keywords;?>">上一页</a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page=1&keywords='.$keywords;?>">首页 </a>         </li>
-	</ul>
-</div>
-<!-- content end -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
 </body>

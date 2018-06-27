@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>BLOG index with sidebar & slider  | Amaze UI Examples</title>
+  <title>唢呐荟萃：文章</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="assets/i/favicon.png">
@@ -29,35 +29,40 @@
 <hr>
 <!-- nav start -->
 <nav class="am-g am-g-fixed blog-fixed blog-nav">
-<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
-  <div class="am-collapse am-topbar-collapse" id="blog-collapse">
-    <ul class="am-nav am-nav-pills am-topbar-nav" style="font-size:15px">
-	  <li><img  src="images/logo.png" alt="snhcmenta Logo"/></li>
-	  <li class=""><a href="">首页</a></li>
-      <li class="am-active"><a href="lw-index.html">唢呐乐曲</a></li>
-      <li class="am-dropdown" data-am-dropdown>
-        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-          唢呐乐谱 <span class="am-icon-caret-down"></span>
-        </a>
-        <ul class="am-dropdown-content">
-          <li><a href="lw-index.php">1. blog-index-standard</a></li>         
-          <li><a href="lw-index-nosidebar.html">2. blog-index-nosidebar</a></li>
-          <li><a href="lw-index-center.html">3. blog-index-layout</a></li>
-          <li><a href="lw-index-noslider.html">4. blog-index-noslider</a></li>
-        </ul>
-      </li>
-      <li><a href="lw-article.php">唢呐视频</a></li>
-      <li><a href="lw-img.php">唢呐教程</a></li>
-      <li><a href="lw-article-fullwidth.php">唢呐名家</a></li>
-      <li><a href="lw-timeline.php">唢呐百科</a></li>
-	  <li><a href="">唢呐文章</a></li>
-    </ul>
-    <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
-      <div class="am-form-group">
-        <input type="text" class="am-form-field am-input-sm" placeholder="请输入需要搜索的内容">
-      </div>
-    </form>
-  </div>
+	<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" >
+		<span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span>
+	</button>
+	<div class="am-collapse am-topbar-collapse" id="blog-collapse">
+		<ul class="am-nav am-nav-pills am-topbar-nav" style="font-size:15px">
+			<li><img  src="images/logo.png" alt="snhcmenta Logo"/></li>
+			<li><a href="homepage.php">首页</a></li>
+			<li><a href="music.php">唢呐乐曲</a></li>
+			<li><a href="qupu.php">唢呐乐谱</a></li>
+			<li><a href="video.php">唢呐视频</a></li>
+			<li><a href="movie.php">唢呐电影</a></li>
+			<li><a href="person.php">唢呐名家</a></li>
+			<li><a href="baike.php">唢呐百科</a></li>
+			<li><a href="instrument.php">唢呐乐器</a></li>
+			<li class="am-active"><a href="javascript:;">唢呐文章</a></li>
+			<li><a href="news.php">唢呐新闻</a></li>
+		</ul>
+		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="all.php" method="post">
+			<div class="am-form-group">  
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的内容" value="<?php 
+				if(!empty($_POST['keywords'])){
+					$out=$_POST['keywords'];
+				}else if(!empty($_GET['keywords'])){
+					$r = explode(':',$_GET['keywords']);
+					$out = $r[1];
+				}else{
+					$out='';
+				}
+				echo $out;
+				?>"></input>
+				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
+			</div>
+		</form>
+	</div>
 </nav>
 <hr>
 <!-- nav end -->
@@ -66,11 +71,21 @@
     <div class="column_box">
 	<!--搜索框-->
 	<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="article.php" method="post">
-      <div class="am-form-group">  
-        <input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的文章"></input>
-		<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
-      </div>
-    </form>
+			<div class="am-form-group">  
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的文章" value="<?php 
+				if(!empty($_POST['keywords'])){
+					$out=$_POST['keywords'];
+				}else if(!empty($_GET['keywords'])){
+					$r = explode(':',$_GET['keywords']);
+					$out = $r[1];
+				}else{
+					$out='';
+				}
+				echo $out;
+				?>"></input>
+				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
+			</div>
+		</form>
       <div class="title1 cf">
         <h2 class="fl">唢呐文章</h2>
       </div>
@@ -114,7 +129,7 @@
 		foreach ($result as $one){   ?>
 			<tr>
                 <!--文章标题-->
-				<td width="200"><a href="<?php echo getfield($one['URL']);?>"><?php echo getfield($one['article_headline']);?></a></td>
+				<td width="200"><a href="article_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo getfield($one['article_headline']);?></a></td>
                 <!--文章作者-->
 				<td width="80"><?php echo getfield($one['article_author']);?></a></td>
 				<!--对于不确定有的字段，先判断这个字段有没有，再取值-->
@@ -125,11 +140,11 @@
 				?></td>
 				<!--文章简介-->
 				<td><?php 
-				if (isset($one['about'])){ echo getfield($one['about']);}
+				if (isset($one['about'])){echo getfield($one['about']);}
 				else {echo "--";}
 				?></td>
 				<!--下载量-->
-				<td width="80"><?php echo getfield($one['download']);?></td>
+				<td width="80"><?php echo getfield($one['publicationDate']);?></td>
 			</tr>
 	<?php }}?>	
 

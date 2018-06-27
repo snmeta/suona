@@ -35,20 +35,32 @@
 	<div class="am-collapse am-topbar-collapse" id="blog-collapse">
 		<ul class="am-nav am-nav-pills am-topbar-nav" style="font-size:15px">
 			<li><img  src="images/logo.png" alt="snhcmenta Logo"/></li>
-			<li><a href="homepage.html">首页</a></li>
+			<li><a href="homepage.php">首页</a></li>
 			<li><a href="music.php">唢呐乐曲</a></li>
 			<li><a href="qupu.php">唢呐乐谱</a></li>
 			<li class="am-active"><a href="javascript:;">唢呐视频</a></li>
+			<li><a href="movie.php">唢呐电影</a></li>
 			<li><a href="person.php">唢呐名家</a></li>
 			<li><a href="baike.php">唢呐百科</a></li>
 			<li><a href="instrument.php">唢呐乐器</a></li>
 			<li><a href="article.php">唢呐文章</a></li>
+			<li><a href="news.php">唢呐新闻</a></li>
 		</ul>
-		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="">
-		  <div class="am-form-group">
-			<input type="text" class="am-form-field am-input-sm" placeholder="请输入需要搜索的内容">
-			<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
-		  </div>
+		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="all.php" method="post">
+			<div class="am-form-group">  
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的内容" value="<?php 
+				if(!empty($_POST['keywords'])){
+					$out=$_POST['keywords'];
+				}else if(!empty($_GET['keywords'])){
+					$r = explode(':',$_GET['keywords']);
+					$out = $r[1];
+				}else{
+					$out='';
+				}
+				echo $out;
+				?>"></input>
+				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
+			</div>
 		</form>
 	</div>
 </nav>

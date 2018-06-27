@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>BLOG index with sidebar & slider  | Amaze UI Examples</title>
+  <title>唢呐荟萃主页</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="assets/i/favicon.png">
@@ -26,83 +26,109 @@
 
 <body id="blog">
 
+<header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">
+    <div class="am-u-sm-8 am-u-sm-centered">
+        <h2 class="am-hide-sm-only">唢呐荟萃</h2>
+    </div>
+</header>
 <hr>
 <!-- nav start -->
 <nav class="am-g am-g-fixed blog-fixed blog-nav">
-<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
-  <div class="am-collapse am-topbar-collapse" id="blog-collapse">
-    <ul class="am-nav am-nav-pills am-topbar-nav" style="font-size:15px">
-	  <li><img  src="assets/i/logo.png" alt="snhcmenta Logo"/></li>
-	  <li class=""><a href="">首页</a></li>
-      <li class="am-active"><a href="lw-index.html">唢呐乐曲</a></li>
-      <li class="am-dropdown" data-am-dropdown>
-        <a class="am-dropdown-toggle" href="javascript:;">唢呐乐谱  </a></li>
-      <li><a href="lw-article.php">唢呐视频</a></li>
-      <li><a href="lw-article-fullwidth.php">唢呐名家</a></li>
-      <li><a href="lw-timeline.php">唢呐百科</a></li>
-	  <li><a href="">唢呐乐器</a></li>
-	  <li><a href="">唢呐文章</a></li>
-    </ul>
-    <form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="">
-      <div class="am-form-group">
-        <input type="text" class="am-form-field am-input-sm" placeholder="请输入需要搜索的内容">
-        <button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
-      </div>
-    </form>
-  </div>
+	<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" >
+		<span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span>
+	</button>
+	<div class="am-collapse am-topbar-collapse" id="blog-collapse">
+		<ul class="am-nav am-nav-pills am-topbar-nav" style="font-size:15px">
+			<li class="am-active"><img src="images/logo.png" alt="snhcmenta Logo"/></li>
+			<li class="am-active"><a href="javascript:;">首页</a></li>
+			<li><a href="music.php">唢呐乐曲</a></li>
+			<li><a href="qupu.php">唢呐乐谱</a></li>
+			<li><a href="video.php">唢呐视频</a></li>
+			<li><a href="movie.php">唢呐电影</a></li>
+			<li><a href="person.php">唢呐名家</a></li>
+			<li><a href="baike.php">唢呐百科</a></li>
+			<li><a href="instrument.php">唢呐乐器</a></li>
+			<li><a href="article.php">唢呐文章</a></li>
+			<li><a href="news.php">唢呐新闻</a></li>
+		</ul>
+		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="all.php" method="post">
+			<div class="am-form-group">  
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的内容" value="<?php 
+				if(!empty($_POST['keywords'])){
+					$out=$_POST['keywords'];
+				}else if(!empty($_GET['keywords'])){
+					$r = explode(':',$_GET['keywords']);
+					$out = $r[1];
+				}else{
+					$out='';
+				}
+				echo $out;
+				?>"></input>
+				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
+			</div>
+		</form>
+	</div>
 </nav>
-
 <!-- nav end -->
+
 <!-- banner start -->
 <div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
     <div data-am-widget="slider" class="am-slider am-slider-b1" data-am-slider='{&quot;controlNav&quot;:false}' >
     <ul class="am-slides">
       <li>
-            <img src="assets/i/b1.jpg">
+            <img height="620" width="1434" src="assets/i/b1.jpg">
             <div class="blog-slider-desc am-slider-desc ">
                 <div class="blog-text-center blog-slider-con">
-                    <span><a href="" class="blog-color">Song &nbsp;</a></span>               
-                    <h1 class="blog-h-margin"><a href="">唢呐乐曲1</a></h1>
-                    <p>唢呐乐曲1里面的经典词
+                    <span><a href="http://video.chinaminyue.cn/dance/down-726.html" class="blog-color">Song &nbsp;</a></span>               
+                    <h1 class="blog-h-margin"><a href="">黄土情</a></h1>
+					<span class="blog-bor">作者：周东朝</span>
+                    <p>《黄土情》是我国当代著名唢呐演奏家周东朝先生在1992年创作的，乐曲表达了西北人们在改革开放中
+					奋发图强的精神面貌。此乐曲曲调质朴，深情，表达了西北人们对家乡的热爱和依恋之情
                     </p>
-                    <span class="blog-bor">2015/10/9</span>
+                    
                     <br><br><br><br><br><br><br>                
                 </div>
             </div>
       </li>
       <li>
-            <img src="assets/i/b2.jpg">
+            <img height="620" width="1434" src="assets/i/b2.jpg">
             <div class="am-slider-desc blog-slider-desc">
                 <div class="blog-text-center blog-slider-con">
-                    <span><a href="" class="blog-color">Song &nbsp;</a></span>               
-                    <h1 class="blog-h-margin"><a href="">唢呐歌曲2</a></h1>
-                    <p>唢呐歌曲2里面的词
+                    <span><a href="http://video.chinaminyue.cn/dance/down-728.html" class="blog-color">Song &nbsp;</a></span>               
+                    <h1 class="blog-h-margin"><a href="">金蛇狂舞</a></h1>
+					<span>作者：聂耳</span>         
+                    <p>聂耳根据云南民间音乐编曲的《金蛇狂舞》，是一首广泛流传的民族器乐曲。此曲以热烈、欢畅的
+					旋律和明快、活跃的节奏，表现了人们在欢度元宵佳节时舞龙戏狮的热闹情景。
                     </p>
-                    <span>2015/10/9</span>                
+                          
                 </div>
             </div>
       </li>
       <li>
-            <img src="assets/i/b3.jpg">
+            <img height="620" width="1434" src="assets/i/b3.jpg">
             <div class="am-slider-desc blog-slider-desc">
                 <div class="blog-text-center blog-slider-con">
-                    <span><a href="" class="blog-color">Song &nbsp;</a></span>               
-                    <h1 class="blog-h-margin"><a href="">唢呐歌曲3</a></h1>
-                    <p>唢呐歌曲3里面的词
+                    <span><a href="http://video.chinaminyue.cn/dance/down-762.html" class="blog-color">Song &nbsp;</a></span>         
+					<span>中国民乐</span>
+                    <h1 class="blog-h-margin"><a href="">喜庆胜利</a></h1>
+                    <p>乐曲创作于1977年。全曲分三段：第一段旋律热烈、欢畅。如歌的中间段与前段形成鲜明对比。再现部中的
+					音型重复，节奏上的顿挫变化，模拟欢笑声和结尾前的快速双吐，造成热烈的音乐气氛。此曲表现战胜“四人帮”
+					后人们喜庆胜利的欢欣、畅快情绪。
                     </p>
-                    <span>2015/10/9</span>                
+                                    
                 </div>
             </div>
       </li>
       <li>
-            <img src="assets/i/b2.jpg">
+            <img height="620" width="1434" src="assets/i/b2.jpg">
             <div class="am-slider-desc blog-slider-desc">
                 <div class="blog-text-center blog-slider-con">
-                    <span><a href="" class="blog-color">Song &nbsp;</a></span>               
-                    <h1 class="blog-h-margin"><a href="">唢呐歌曲4</a></h1>
-                    <p>唢呐歌曲4里面的词
-                    </p>
-                    <span>2015/10/9</span>                
+                    <span><a href="http://video.chinaminyue.cn/dance/down-898.html" class="blog-color">Song &nbsp;</a></span>    
+					<span>中国民乐</span>    					
+                    <h1 class="blog-h-margin"><a href="">全家福</a></h1>
+                    <p>《全家福》本属于用豫北安阳地区的民间戏曲唱腔、板式、曲牌组合起来的吹奏乐曲，它的形成、加工、改编，
+					经历了一个漫长而曲折的创作过程。
+                    </p>                               
                 </div>
             </div>
       </li>
@@ -150,9 +176,9 @@
           <div id="news" class="swiper-container">
             <ul class="swiper-wrapper">
                             <li class="swiper-slide">
-                <a href="http://ggglxy.scu.edu.cn/index.php?c=article&amp;a=type&amp;tid=194" target="_blank"><img src="assets/i/x1.jpg" alt="唢呐新闻1" height="350" width="350" /></a>
+                <a href="http://ggglxy.scu.edu.cn/index.php?c=article&amp;a=type&amp;tid=194" target="_blank"><img src="assets/i/x1.jpg" alt="唢呐新闻" height="350" width="350" /></a>
                 <div class="trasrctitle1">
-                  <p class="title2">唢呐热门新闻1</p>
+                  <p class="title2">唢呐最新新闻</p>
                 </div>
               </li>
                             <!--<li class="swiper-slide">
@@ -184,23 +210,19 @@
           </div>
         </div>
         <div class="index_newsbox fr">
-          <ul class="index_news_ul">
-                        <li><a href="/index.php?c=article&id=1676" class="fl">走进世界遗产地山东爱乐民族乐团放歌千年古桑林</a><span class="time fr">2018-05-30</span></li>
-                        <li><a href="/index.php?c=article&id=1674" class="fl">山间飘来唢呐声</a><span class="time fr">2018-05-30</span></li>
-                        <li><a href="/index.php?c=article&id=1673" class="fl">承接千载豪情内蒙古托克托奏响“晋蒙”唢呐情</a><span class="time fr">2018-05-30</span></li>
-                        <li><a href="/index.php?c=article&id=1672" class="fl">唢古呐今：唢呐艺术漫谈与赏析”讲座举行</a><span class="time fr">2018-05-30</span></li>
-                        <li><a href="/index.php?c=article&id=1671" class="fl">重庆美女用唢呐吹开中央音乐学院大门- 上游新闻·汇聚向上的力量</a><span class="time fr">2018-05-30</span></li>
-                        <li><a href="/index.php?c=article&id=1667" class="fl">中国旅游新闻网:唢呐声里的激扬青春</a><span class="time fr">2018-05-29</span></li>
-                        <li><a href="/index.php?c=article&id=1666" class="fl">静姐唢呐演艺新闻全集_静姐唢呐演艺最新资讯</a><span class="time fr">2018-05-29</span></li>
-                        <li><a href="/index.php?c=article&id=1665" class="fl">山西50多岁盲艺人李存保网络直播吹唢呐:有人喜欢就吹下去级”称号</a><span class="time fr">2018-05-29</span></li>
-                        <li><a href="/index.php?c=article&id=1664" class="fl">唢古呐今:唢呐艺术漫谈与赏析"讲座举行</a><span class="time fr">2018-05-29</span></li>
-                        <li><a href="/index.php?c=article&id=1663" class="fl">刘园村唢呐世家的孩子们:除了上学,最重要的是一早一晚吹唢呐</a><span class="time fr">2018-05-25</span></li>
-                        <li><a href="/index.php?c=article&id=1661" class="fl">心光艺术团团长陈忠的唢呐人生</a><span class="time fr">2018-05-25</span></li>
-                        <li><a href="/index.php?c=article&id=1659" class="fl">杨福建:唢呐声声</a><span class="time fr">2018-05-25</span></li>
-                      </ul>
-					   <ul class="am-pagination">
-         					<li class="am-pagination-next"><a href="">查看更多新闻 &raquo;</a>         </li>
-      				  </ul>
+            <ul class="index_news_ul">
+			<?php 
+			include "getcontent.php";
+			$result = getcontent("news:*",1)['result'];
+			$count = 0;
+			foreach ($result as $one){
+				$count = $count+1?>	
+                <li><a href="<?php echo getfield($one['URL']);?>" class="fl"><?php echo getfield($one['news_name']);?></a><span class="time fr"><?php echo transdate(getfield($one['uploadDate']))['nyr'];?></span></li>
+            <?php if ($count==12) break;}?>   
+            </ul>
+			<ul class="am-pagination">
+         		<li class="am-pagination-next"><a href="news.php">查看更多新闻 &raquo;</a>         </li>
+      		</ul>
         </div>
 		
       </div>
@@ -217,32 +239,32 @@
 	  <td width="280">
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/x2.jpg" alt="唢呐名家1" height="200" width="230" /></a>
+	  <image src="renwu/1-1P31G15031.jpg" alt="唢呐名家1" height="200" width="230" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐名家一</a></p>
-	  <span style="text-align:left;display:block;">关于这大师的简介我也不足道说什么好定好</span></td>
+	  <p ><a href="" style="color:#C00;" target="_blank">石海彬</a></p>
+	  <span style="text-align:left;display:block;">当代著名唢呐演奏家、文学硕士。现任中国民族管弦乐学会唢呐专业委员会副秘书长，中国音乐家协会民族管乐研究会副秘书长，中央音乐学院副教授，硕士研究生导师。</span></td>
 	  <td width="280">
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/x3.jpg" alt="唢呐名家2" height="200" width="230" /></a>
+	  <image src="renwu/1-1P31G14420.jpg" alt="唢呐名家2" height="200" width="230" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐名家二</a></p>
-	  <span style="text-align:left;display:block;">关于这大师的简介我也不足道说什么好定好</span></td>
+	  <p ><a href="" style="color:#C00;" target="_blank">胡海泉</a></p>
+	  <span style="text-align:left;display:block;">中国当代著名唢呐演奏家、民族管乐大师、音乐教育家、作曲家、国家一级演员。</span></td>
 	  <td width="280">
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/x5.jpg" alt="唢呐名家3" height="200" width="230" /></a>
+	  <image src="image":"renwu/1-1P31G15645.jpg" alt="唢呐名家3" height="200" width="230" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐名家三</a></p>
-	  <span style="text-align:left;display:block;">关于这大师的简介我也不足道说什么好定好</span></td> </table>
+	  <p ><a href="" style="color:#C00;" target="_blank">梁福德</a></p>
+	  <span style="text-align:left;display:block;"> 著名唢呐演奏家、笛子演奏家、（民族管乐演奏家）音乐教育家，现任山西戏剧职业学院民乐教研室主任
+</span></td> </table>
 	  <ul class="am-pagination">
-         <li class="am-pagination-next"><a href="">查看更多名家 &raquo;</a>         </li>
+         <li class="am-pagination-next"><a href="person.php">查看更多名家 &raquo;</a>         </li>
       </ul>
 	  <!--<div><a href="/index.php?c=special&sid=1" style="text-align: right;">+查看更多</a></div>-->
 	 
 	  </div>
 	  </div>
-
 
          <div class="w1000 auto ovh">
         <div class="column_box">
@@ -254,70 +276,70 @@
 	  <td>
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/s1.png" alt="唢呐视频1" height="190" width="190" /></a>
+	  <image src="http://vthumb.ykimg.com/054201015A9961488B3C46A7733CD913" alt="唢呐视频1" height="190" width="190" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频1</a></p>
-	  <span style="text-align:left;display:block;">唢呐入门视频第十一讲 《说唱脸谱》</span></td>
+	  <p ><a href="http://v.youku.com/v_show/id_XMzQzNTA2MjQ4NA==.html" style="color:#C00;" target="_blank">农村唢呐, 大哥吹出了悲伤, 吹哭了在场的人</a></p>
+	  <span style="text-align:left;display:block;">小武说历史</span></td>
 	  <td>
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/s2.png" alt="唢呐视频2" height="190" width="190" /></a>
+	  <image src="http://img.alicdn.com/tfs/TB1GruCj1OSBuNjy0FdXXbDnVXa-180-102.png" alt="唢呐视频2" height="190" width="190" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频2</a></p>
-	  <span style="text-align:left;display:block;">唢呐入学教程视频 第六讲《二梅子》</span></td>
+	  <p ><a href="http://v.youku.com/v_show/id_XNDczOTEzNzI0.html" style="color:#C00;" target="_blank">唢呐大联唱片头-薛心痛</a></p>
+	  <span style="text-align:left;display:block;">薛菜哥</span></td>
 	  <td>
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/s3.png" alt="唢呐视频3" height="190" width="190" /></a>
+	  <image src="http://img.alicdn.com/tfs/TB1GruCj1OSBuNjy0FdXXbDnVXa-180-102.png" alt="唢呐视频3" height="190" width="190" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频3</a></p>
-	  <span style="text-align:left;display:block;">唢呐入学教程视频第五讲 《音阶练习》</span></td></tr>
+	  <p ><a href="http://v.youku.com/v_show/id_XMzYzNjg4NTQyMA==.html" style="color:#C00;" target="_blank">贵阳青岩唢呐</a></p>
+	  <span style="text-align:left;display:block;">喜欢自己的喜欢别人说去吧</span></td></tr>
 	  <tr>
 	  <td>
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/s4.png" alt="唢呐视频4" height="190" width="190" /></a>
+	  <image src="http://img.alicdn.com/tfs/TB1GruCj1OSBuNjy0FdXXbDnVXa-180-102.png" alt="唢呐视频4" height="190" width="190" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频4</a></p>
-	  <span style="text-align:left;display:block;">如何修理唢呐哨片的视频教程</span></td>
+	  <p ><a href="http://v.youku.com/v_show/id_XMzYzNDQ2OTYyMA==.html" style="color:#C00;" target="_blank">横笛, 女儿情, 开封洧川林平唢呐艺术</a></p>
+	  <span style="text-align:left;display:block;">哈哈豆生活</span></td>
 	  <td>
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/s5.png" alt="唢呐视频5" height="190" width="190" /></a>
+	  <image src="http://img.alicdn.com/tfs/TB1GruCj1OSBuNjy0FdXXbDnVXa-180-102.png" alt="唢呐视频5" height="190" width="190" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频5</a></p>
-	  <span style="text-align:left;display:block;">唢呐指法教学视频</span></td>
+	  <p ><a href="http://v.youku.com/v_show/id_XMzYzNDAyNDM3Mg==.html" style="color:#C00;" target="_blank">唢呐高手在新民村事宴上吹奏西口情</a></p>
+	  <span style="text-align:left;display:block;">军事五三</span></td>
 	  <td>
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/s6.jpg" alt="唢呐视频6" height="190" width="190" /></a>
+	  <image src="http://img.alicdn.com/tfs/TB1GruCj1OSBuNjy0FdXXbDnVXa-180-102.png" alt="唢呐视频6" height="190" width="190" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频6</a></p>
-	  <span style="text-align:left;display:block;">胡美玲唢呐启蒙教学视频第六讲 《唢呐三吹吐奏方法》</span></td>
+	  <p ><a href="http://v.youku.com/v_show/id_XMzYzMjM4ODgyMA==.html" style="color:#C00;" target="_blank">纳雍寨乐唢呐</a></p>
+	  <span style="text-align:left;display:block;">戴唢呐18785793670</span></td>
 	  <tr>
 	  <td>
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/s7.jpg" alt="唢呐视频7" height="190" width="190" /></a>
+	  <image src="http://img.alicdn.com/tfs/TB1GruCj1OSBuNjy0FdXXbDnVXa-180-102.png" alt="唢呐视频7" height="190" width="190" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频7</a></p>
-	  <span style="text-align:left;display:block;">胡美玲唢呐启蒙教学视频第六讲 《唢呐综合技巧练习》</span></td>
+	  <p ><a href="http://v.youku.com/v_show/id_XMzYyODY4ODY0NA==.html" style="color:#C00;" target="_blank">唢呐《篱笆墙的影子》真感人</a></p>
+	  <span style="text-align:left;display:block;">嘻哈快乐人生</span></td>
 	  <td>
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/s8.jpg" alt="唢呐视频8" height="190" width="190" /></a>
+	  <image src="http://img.alicdn.com/tfs/TB1GruCj1OSBuNjy0FdXXbDnVXa-180-102.png" alt="唢呐视频8" height="190" width="190" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频8</a></p>
-	  <span style="text-align:left;display:block;">陈家齐唢呐教学视频第七课 《唢呐指颤音》</span></td>
+	  <p ><a href="http://v.youku.com/v_show/id_XMzYyNzYwODQ4NA==.html" style="color:#C00;" target="_blank">六枝心莲心唢呐队</a></p>
+	  <span style="text-align:left;display:block;">抢手的维奇酱</span></td>
 	  <td>
 	  <div class="">
 	  <a href="" target="_blank">
-	  <image src="assets/i/s9.jpg" alt="唢呐视频9" height="190" width="190" /></a>
+	  <image src="http://vthumb.ykimg.com/054204085B09533B000001779F037941" alt="唢呐视频9" height="190" width="190" /></a>
 	  </div>
-	  <p ><a href="" style="color:#C00;" target="_blank">唢呐视频9</a></p>
-	  <span style="text-align:left;display:block;">陈家齐唢呐教学视频第十课 《唢呐F调指法》</span></td></tr></table>
+	  <p ><a href="" style="color:#C00;" target="_blank">水城苗族唢呐</a></p>
+	  <span style="text-align:left;display:block;">高同志de奥尼尔</span></td></tr></table>
 	   <ul class="am-pagination">
-         <li class="am-pagination-next"><a href="">查看更多视频 &raquo;</a>         </li>
+         <li class="am-pagination-next"><a href="video.php">查看更多视频 &raquo;</a>         </li>
       </ul>
 		</div>
 		</div>
@@ -392,11 +414,7 @@
       </ul>
         </div>
 		</div>-->
-		<div class="">
-		 <ul class="am-pagination">
-         <li class="am-pagination-next"><a href="">下一页 &raquo;</a>         </li>
-      </ul>
-	  </div>
+
 <!-- content end -->
 
 

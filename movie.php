@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>唢呐荟萃:名人堂</title>
+  <title>唢呐荟萃：电影</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="assets/i/favicon.png">
@@ -39,8 +39,8 @@
 			<li><a href="music.php">唢呐乐曲</a></li>
 			<li><a href="qupu.php">唢呐乐谱</a></li>
 			<li><a href="video.php">唢呐视频</a></li>
-			<li><a href="movie.php">唢呐电影</a></li>
-			<li class="am-active"><a href="javascript:;">唢呐名家</a></li>
+			<li class="am-active"><a href="javascript:;">唢呐电影</a></li>
+			<li><a href="person.php">唢呐名家</a></li>
 			<li><a href="baike.php">唢呐百科</a></li>
 			<li><a href="instrument.php">唢呐乐器</a></li>
 			<li><a href="article.php">唢呐文章</a></li>
@@ -68,9 +68,9 @@
 <div class="w1000 auto ovh">
 	<div class="column_box">
 		<!--搜索框-->
-		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="person.php" method="post">
+		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="movie.php" method="post">
 			<div class="am-form-group">  
-				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的人物" value="<?php 
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的电影" value="<?php 
 				if(!empty($_POST['keywords'])){
 					$out=$_POST['keywords'];
 				}else if(!empty($_GET['keywords'])){
@@ -85,17 +85,17 @@
 			</div>
 		</form>
 		<div class="title1 cf">
-			<h2 class="fl">唢呐名家</h2>
+			<h2 class="fl">唢呐电影</h2><a href=""> </a>
 		</div>
-		<table class="am-table am-table-bordered">
+		<table>
 			<tbody>
-			<?php //获取搜索结果并输出
+				<?php //获取搜索结果并输出	
 				include "getcontent.php" ;
 				//获取搜索关键词
 				if (isset($_GET['keywords'])){
 					$keywords = $_GET['keywords'];
 				}else{ 
-					$keywords = empty($_POST['keywords']) ? "person:*":"person:".$_POST['keywords'];
+					$keywords = empty($_POST['keywords']) ? "movie:*":"movie:".$_POST['keywords'];
 				}
 				//获取当前页数
 				$page = empty($_GET['page']) ? 1:$_GET['page'];
@@ -105,6 +105,7 @@
 				$total = $data['total'];
 				$pages = $data['pages'];
 				echo "共".$total."条结果。";
+				echo '<hr>';
 				//判断是否有结果
 				if (count($result)==0){
 					echo '
@@ -114,39 +115,61 @@
 				}
 				//若有，输出结果
 				else{
-					$i=0;
-					for($i;$i<count($result);){
-						?>
-						<tr>
-						<?php
-						for($j=0;$j<5;$j++){
-							$one = $result[$i];
-							if(isset($one)){
-								$i++;
+					foreach ($result as $one){
 							?>
-								<td>
-									<a href="person_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo "<center>".getfield($one['person_name'])."</center>";?></a>
-								</td>						
-					<?php	}
-						}
-						echo "</tr>";
+						<td>
+							<image height="225" width="150" src="<?php echo getfield($one['thumbnail'])?>"/>
+						</td>
+						<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+						<td>
+							<a href="movie_detail.php?id=<?php echo getfield($one['id'])?>"><h2><b><?php echo getfield($one['movie_name'])?></b></h2></a>
+							<p><?php 
+								$id_temp = getfield($one['id']);
+								$em_content = $highlighting[$id_temp];
+								$em_content = $em_content['description'];
+								for($i=0;$i<count($em_content);$i++){
+									echo "...".$em_content[$i]."...";
+								}
+								if (isset($one['movie_director'])){
+									echo "<p>导演：".getfield($one['movie_director']).'</p>';
+								}else{
+									echo "<p>导演：暂无";
+								}
+								if (isset($one['date'])){
+									echo "<p>上映时间：".getfield($one['date']).'年</p>';
+								}else{
+									echo "<p>上映时间：暂无</p>";
+								}
+							?>
+							</p>
+						</td>
+					<?php	
 					}
 				}?>
-    </tbody>
-</table>
-</div>
+    
+			</tbody>
+		</table>
+	</div>
 </div>
 
 <!-- 分页-->
-<div class="am-g am-g-fixed ">
-	<ul class="am-pagination am-avg-sm-8 am-g-centered">
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page-1).'&keywords='.$keywords;?>">上一页</a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page=1&keywords='.$keywords;?>">首页 </a>         </li>
-	</ul>
-</div>
+<?php
+if($total>20){
+?>
+	<div class="am-g am-g-fixed ">
+		<ul class="am-pagination am-avg-sm-8 am-g-centered">
+			<li class="am-pagination-next"><a href="<?php echo 'movie.php?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'movie.php?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'movie.php?page='.($page-1).'&keywords='.$keywords;?>">上一页</a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'movie.php?page=1&keywords='.$keywords;?>">首页 </a>         </li>
+		</ul>
+	</div>
+<?php
+}
+?>
 <!-- content end -->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
 </body>

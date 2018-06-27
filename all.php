@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>唢呐荟萃:名人堂</title>
+  <title>唢呐荟萃主页</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="assets/i/favicon.png">
@@ -24,8 +24,6 @@
   <link rel="stylesheet" href="assets/css/swiper.min.css">
 </head>
 
-<body id="blog">
-
 <hr>
 <!-- nav start -->
 <nav class="am-g am-g-fixed blog-fixed blog-nav">
@@ -34,13 +32,13 @@
 	</button>
 	<div class="am-collapse am-topbar-collapse" id="blog-collapse">
 		<ul class="am-nav am-nav-pills am-topbar-nav" style="font-size:15px">
-			<li><img  src="images/logo.png" alt="snhcmenta Logo"/></li>
-			<li><a href="homepage.php">首页</a></li>
+			<li class="am-active"><img src="images/logo.png" alt="snhcmenta Logo"/></li>
+			<li class="am-active"><a href="homepage.php">首页</a></li>
 			<li><a href="music.php">唢呐乐曲</a></li>
 			<li><a href="qupu.php">唢呐乐谱</a></li>
 			<li><a href="video.php">唢呐视频</a></li>
 			<li><a href="movie.php">唢呐电影</a></li>
-			<li class="am-active"><a href="javascript:;">唢呐名家</a></li>
+			<li><a href="person.php">唢呐名家</a></li>
 			<li><a href="baike.php">唢呐百科</a></li>
 			<li><a href="instrument.php">唢呐乐器</a></li>
 			<li><a href="article.php">唢呐文章</a></li>
@@ -60,32 +58,18 @@
 				echo $out;
 				?>"></input>
 				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
+				<a href="homepage.php" align="left"><u>返回首页</u></a>
 			</div>
 		</form>
 	</div>
 </nav>
 <hr>
+<body id="blog">
+
 <div class="w1000 auto ovh">
-	<div class="column_box">
-		<!--搜索框-->
-		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="person.php" method="post">
-			<div class="am-form-group">  
-				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的人物" value="<?php 
-				if(!empty($_POST['keywords'])){
-					$out=$_POST['keywords'];
-				}else if(!empty($_GET['keywords'])){
-					$r = explode(':',$_GET['keywords']);
-					$out = $r[1];
-				}else{
-					$out='';
-				}
-				echo $out;
-				?>"></input>
-				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
-			</div>
-		</form>
+    <div class="column_box">
 		<div class="title1 cf">
-			<h2 class="fl">唢呐名家</h2>
+			<h1 class="fl">搜索结果</h1>
 		</div>
 		<table class="am-table am-table-bordered">
 			<tbody>
@@ -94,8 +78,16 @@
 				//获取搜索关键词
 				if (isset($_GET['keywords'])){
 					$keywords = $_GET['keywords'];
-				}else{ 
-					$keywords = empty($_POST['keywords']) ? "person:*":"person:".$_POST['keywords'];
+				}
+				else if(!empty($_POST['keywords'])){ 
+					$keywords = "_text_:".$_POST['keywords'];
+				}else{
+				?>
+				<script type="text/javascript"> 
+					alert("请输入要搜索的内容！"); 
+					window.location.href="homepage.php"; 
+  				</script>
+				<?php				
 				}
 				//获取当前页数
 				$page = empty($_GET['page']) ? 1:$_GET['page'];
@@ -104,7 +96,9 @@
 				$result = $data['result'];
 				$total = $data['total'];
 				$pages = $data['pages'];
+				$highlighting = $data['highlighting'];
 				echo "共".$total."条结果。";
+				echo "<hr>";
 				//判断是否有结果
 				if (count($result)==0){
 					echo '
@@ -114,38 +108,31 @@
 				}
 				//若有，输出结果
 				else{
-					$i=0;
-					for($i;$i<count($result);){
-						?>
-						<tr>
-						<?php
-						for($j=0;$j<5;$j++){
-							$one = $result[$i];
-							if(isset($one)){
-								$i++;
-							?>
-								<td>
-									<a href="person_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo "<center>".getfield($one['person_name'])."</center>";?></a>
-								</td>						
-					<?php	}
-						}
-						echo "</tr>";
+					foreach ($result as $one){   
+						echo '<hr>';
+						getkey($one,$highlighting);
+						echo '<hr>';
 					}
-				}?>
-    </tbody>
-</table>
+				}?>	
+			</tbody>
+		</table>
+	</div>
 </div>
-</div>
-
 <!-- 分页-->
-<div class="am-g am-g-fixed ">
-	<ul class="am-pagination am-avg-sm-8 am-g-centered">
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page-1).'&keywords='.$keywords;?>">上一页</a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page=1&keywords='.$keywords;?>">首页 </a>         </li>
-	</ul>
-</div>
+<?php
+if($total>20){
+?>
+	<div class="am-g am-g-fixed ">
+		<ul class="am-pagination am-avg-sm-8 am-g-centered">
+			<li class="am-pagination-next"><a href="<?php echo 'all.php?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'all.php?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'all.php?page='.($page-1).'&keywords='.$keywords;?>">上一页</a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'all.php?page=1&keywords='.$keywords;?>">首页 </a>         </li>
+		</ul>
+	</div>
+<?php
+}
+?>
 <!-- content end -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
