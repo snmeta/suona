@@ -92,11 +92,11 @@
 	  <table class="am-table am-table-bordered">
     <thead>
         <tr>
-            <th>文章标题</th>
-			<th>文章作者</th>
-			<th>文章类型</th>
-			<th>文章简介</th>
-            <th>文章下载量</th>
+            <th><center>文章标题</center></th>
+			<th><center>文章作者</center></th>
+			<th><center>文章类型</center></th>
+			<th><center>文章简介</center></th>
+            <th><center>文章日期</center></th>
         </tr>
     </thead>
 	<tbody>
@@ -129,22 +129,29 @@
 		foreach ($result as $one){   ?>
 			<tr>
                 <!--文章标题-->
-				<td width="200"><a href="article_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo getfield($one['article_headline']);?></a></td>
+				<td width="150"><a href="article_detail.php?id=<?php echo getfield($one['id']);?>"><center><?php echo getfield($one['article_headline']);?></center></a></td>
                 <!--文章作者-->
-				<td width="80"><?php echo getfield($one['article_author']);?></a></td>
+				<td width="80"><center><?php echo getfield($one['article_author']);?></center></td>
 				<!--对于不确定有的字段，先判断这个字段有没有，再取值-->
                 <!--文章类型-->
-				<td width="50"><?php 
-				if (isset($one['article_publitionType'])){ echo getfield($one['article_publitionType']);}
-				else {echo "--";}
+				<td width="100"><?php 
+				if (isset($one['article_publitionType'])){ echo "<center>".getfield($one['article_publitionType'])."</center>";}
+				else {echo "<center>--</center>";}
 				?></td>
 				<!--文章简介-->
 				<td><?php 
 				if (isset($one['about'])){echo getfield($one['about']);}
-				else {echo "--";}
+				else {echo "<center>--</center>";}
 				?></td>
-				<!--下载量-->
-				<td width="80"><?php echo getfield($one['publicationDate']);?></td>
+				<!--日期-->
+				<td width="100">
+				<?php if (isset($one['publicationDate'])){
+						$date=transdate($one['publicationDate']); 
+						echo "<center>".$date['nyr']."</center>";
+					}else{
+						echo "<center>--</center>";
+					}?>
+				</td>
 			</tr>
 	<?php }}?>	
 

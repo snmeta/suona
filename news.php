@@ -124,7 +124,7 @@
 	else{
 		foreach ($result as $one){   ?>
 			<tr>
-				<td><a href="<?php echo getfield($one['URL']);?>"><?php echo getfield($one['news_name']);?></a></td>   
+				<td><a href="<?php echo getfield($one['URL']);?>" target="_blank"><?php echo getfield($one['news_name']);?></a></td>   
 				<!--对于不确定有的字段，先判断这个字段有没有，再取值-->
 				<td><?php 
 				if (isset($one['uploadDate'])){ $date=transdate($one['uploadDate']); echo $date['nyr'];}

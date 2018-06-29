@@ -99,69 +99,62 @@
 					<tbody>
 						<hr>
 					<?php 
-						if (isset($one['uploadDate'])){
-							$date=transdate($one['uploadDate']); 
-							$des = "更新日期：".$date['nyr'];
-						}else{
-							$des = "更新日期：暂无";
-						}
-                        
                         if (isset($one['article_author'])){
-                            echo "<p><strong>文章作者：</strong><p>";
+                            echo "<p><strong>文章作者：</strong>";
                             echo getfield($one['article_author']);
 						}else{
-							$des = "文章作者：未知";
+							echo "<p><strong>文章作者：</strong>未知";
 						}
                         
                          if (isset($one['articleSource'])){
-                             echo "<p><strong>文章来源：</strong><p>";
+                             echo "<p><strong>文章来源：</strong>";
                             echo getfield($one['articleSource']);
 						}else{
-							$des = "文章来源：未知";
+							echo "<p><strong>文章来源：</strong>未知";
 						}
                         
                         if (isset($one['article_publitionType'])){
-                             echo "<p><strong>文章类型：</strong><p>";
+                            echo "<p><strong>文章类型：</strong>";
                             echo getfield($one['article_publitionType']);
 						}else{
-							$des = "文章类型：未知";
+							$des = "<p><strong>文章类型：</strong>未知";
 						}
                         
                         if (isset($one['about'])){
-                             echo "<p><strong>文章内容简介：</strong><p>";
+                            echo "<p><strong>文章内容简介：</strong>";
                             echo getfield($one['about']);
 						}else{
-							$des = "文章内容简介：无";
+							echo "<p><strong>文章内容简介：</strong>无";
 						}
                         
                         if (isset($one['download'])){
-                             echo "<p><strong>文章下载量：</strong><p>";
+                            echo "<p><strong>文章下载量：</strong>";
                             echo getfield($one['download']);
 						}else{
-							$des = "文章下载量：未知";
+							echo "<p><strong>文章下载量：</strong>未知";
 						}
                         
-                        if (isset($one['publicationDate'])){
-                             echo "<p><strong>出版日期：</strong><p>";
-                            echo getfield($one['publicationDate']);
+						if (isset($one['publicationDate'])){
+							$date=transdate($one['publicationDate']); 
+							echo "<p><strong>出版日期：</strong>".$date['nyr'];
 						}else{
-							$des = "出版日期：未知";
+							echo "<p><strong>出版日期：</strong>未知";
 						}
                         
                         if (isset($one['page'])){
-                             echo "<p><strong>文章页数：</strong><p>";
+                            echo "<p><strong>文章页数：</strong>";
                             echo getfield($one['page']);
 						}else{
-							$des = "文章页数：未知";
+							echo "<p><strong>文章页数：</strong>未知";
 						}
                         
                         if (isset($one['URL'])){
-                            echo "<p><strong>文章链接：</strong><p>";
+                            echo "<p><strong>文章链接：</strong>";
                             ?>
-                            <li><a href="<?php echo getfield($one['URL']);?>" >文章链接点这里</a></li>
+                            <h3><a href="<?php echo getfield($one['URL']);?>" target="_blank"><u>点击查看详细文章</u></a></h3>
                             <?php
 						}else{
-							$des = "文章链接：无";
+							echo "<p><strong>文章链接：</strong>无";
 						}
 					?>
 					</tbody>
