@@ -73,106 +73,22 @@
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="video.php" method="post">
 			<div class="am-form-group">  
 				<label>按视频类型筛选：</label>
-					<?php
-						if(!empty($_POST['video_type'])){
-							$out=$_POST['video_type'];
-						}else if(!empty($_GET['video_type'])){
-							$r = explode(':',$_GET['video_type']);
-							$out = $r[1];
-						}else{
-							$out='';
-						}?>
-						<select name="video_type">
-						<?php
-							if($out=='')
-								echo '<option value="" selected>请选择视频类型</option>';
-							else
-								echo '<option value="">请选择视频类型</option>';
-							if($out=="唢呐")
-								echo '<option value="唢呐" selected>唢呐</option>';
-							else
-								echo '<option value="唢呐">唢呐</option>';
-							if($out=="唢呐情")
-								echo '<option value="唢呐情" selected>唢呐情</option>';
-							else
-								echo '<option value="唢呐情">唢呐情</option>';
-							if($out=="唢呐声声")
-								echo '<option value="唢呐声声" selected>唢呐声声</option>';
-							else
-								echo '<option value="唢呐声声">唢呐声声</option>';
-							if($out=="视频教程")
-								echo '<option value="视频教程" selected>视频教程</option>';
-							else
-								echo '<option value="视频教程">视频教程</option>';
-							if($out=="唢呐演奏")
-								echo '<option value="唢呐演奏" selected>唢呐演奏</option>';
-							else
-								echo '<option value="唢呐演奏">唢呐演奏</option>';
-							if($out=="唢呐独奏")
-								echo '<option value="唢呐独奏" selected>唢呐独奏</option>';
-							else 
-								echo '<option value="唢呐独奏">唢呐独奏</option>';
-							if($out=="百鸟朝凤")
-								echo '<option value="百鸟朝凤" selected>百鸟朝凤</option>';
-							else
-								echo '<option value="百鸟朝凤">百鸟朝凤</option>';
-							if($out=="陕北唢呐")
-								echo '<option value="陕北唢呐" selected>陕北唢呐</option>';
-							else
-								echo '<option value="陕北唢呐">陕北唢呐</option>';
-							if($out=="丧葬曲目")
-								echo '<option value="丧葬曲目" selected>丧葬曲目</option>';
-							else
-								echo '<option value="丧葬曲目">丧葬曲目</option>';
-							if($out=="民间小调/民间乐曲")
-								echo '<option value="民间小调/民间乐曲" selected>民间小调/民间乐曲</option>';
-							else
-								echo '<option value="民间小调/民间乐曲">民间小调/民间乐曲</option>';
-							if($out=="婚庆曲目")
-								echo '<option value="婚庆曲目" selected>婚庆曲目</option>';
-							else
-								echo '<option value="婚庆曲目">婚庆曲目</option>';
-							if($out=="唢呐合奏")
-								echo '<option value="唢呐合奏" selected>唢呐合奏</option>';
-							else
-								echo '<option value="唢呐合奏">唢呐合奏</option>';
-					?>
+				<select name="video_type" onchange="submitdata(this.val)">
+					<option value="" selected>请选择视频类型</option>
+					<option value="唢呐">唢呐</option>
+					<option value="唢呐情">唢呐情</option>
+					<option value="唢呐声声">唢呐声声</option>
+					<option value="视频教程">视频教程</option>
+					<option value="唢呐演奏">唢呐演奏</option>
+					<option value="唢呐独奏">唢呐独奏</option>
+					<option value="百鸟朝凤">百鸟朝凤</option>
+					<option value="陕北唢呐">陕北唢呐</option>
+					<option value="丧葬曲目">丧葬曲目</option>
+					<option value="民间小调/民间乐曲">民间小调/民间乐曲</option>
+					<option value="婚庆曲目">婚庆曲目</option>
+					<option value="唢呐合奏">唢呐合奏</option>';
 				</select>
-				<label>按时长筛选：</label>
-				<?php
-						if(!empty($_POST['duration'])){
-							$out=$_POST['duration'];
-						}else if(!empty($_GET['duration'])){
-							$r = explode(':',$_GET['duration']);
-							$out = $r[1];
-						}else{
-							$out='';
-						}?>
-						<select name="duration">
-						<?php
-							if($out=='')
-								echo '<option value="" selected>请选择时长</option>';
-							else
-								echo '<option value="">请选择时长</option>';
-							if($out=="[0 TO 600]")
-								echo '<option value="[0 TO 600]" selected>10分钟以内</option>';
-							else
-								echo '<option value="[0 TO 600]">10分钟以内</option>';
-							if($out=="[601 TO 1800]")
-								echo '<option value="[601 TO 1800]" selected>10-30分钟</option>';
-							else
-								echo '<option value="[601 TO 1800]">10-30分钟</option>';
-							if($out=="[1801 TO 3600]")
-								echo '<option value="[1801 TO 3600]" selected>30-60分钟</option>';
-							else
-								echo '<option value="[1801 TO 3600]">30-60分钟</option>';
-							if($out=="[3601 TO 4200]")
-								echo '<option value="[3601 TO 4200]" selected>1小时以上</option>';
-							else
-								echo '<option value="[3601 TO 4200]">1小时以上</option>';
-					?>
-				</select>
-				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的视频" value="<?php 
+				<input type="text" id="keywords" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的视频" value="<?php 
 				if(!empty($_POST['keywords'])){
 					$out=$_POST['keywords'];
 				}else if(!empty($_GET['keywords'])){
@@ -206,22 +122,21 @@
 				}else{
 					$video_type = empty($_POST['video_type']) ? "video_type:*":"video_type:".$_POST['video_type'];
 				}
-				$video_type = urlencode($video_type);
-				if(isset($_GET['duration'])){
-					$duration = $_GET['duration'];
-				}else{
-					$duration = empty($_POST['duration']) ? "":"duration:".$_POST['duration'];
-				}
-				$duration = urlencode($duration);
-				$fqwords = 'fq='.$duration.'&fq='.$video_type;
 				//获取当前页数
 				$page = empty($_GET['page']) ? 1:$_GET['page'];
 				//获取结果和总记录数、总页数
-				$data=getfilter($keywords,$fqwords,$page);
+				$data=getfilter($keywords,$video_type,$page);
 				$result = $data['result'];
 				$total = $data['total'];
 				$pages = $data['pages'];
 				echo "共".$total."条结果。";
+				?>
+				<script>
+					function submitdata(val){
+						$.post("getcontent.php",{keywords:$keywords,
+					}
+				</script>
+				<?php
 				//判断是否有结果
 				if (count($result)==0){
 					echo '

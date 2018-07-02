@@ -74,7 +74,7 @@
 		<table class="am-table am-table-bordered">
 			<tbody>
 			<?php //获取搜索结果并输出
-				include "getcontent.php" ;
+				include "getdetail.php";
 				//获取搜索关键词
 				if (isset($_GET['keywords'])){
 					$keywords = $_GET['keywords'];

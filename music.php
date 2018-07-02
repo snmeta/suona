@@ -48,7 +48,7 @@
 			<li><a href="news.php">唢呐新闻</a></li>
 		</ul>
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="all.php" method="post">
-			<div class="am-form-group">  
+			<div class="am-form-group"> 
 				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的内容" value="<?php 
 				if(!empty($_POST['keywords'])){
 					$out=$_POST['keywords'];
@@ -70,7 +70,41 @@
     <div class="column_box">
 		<!--搜索框-->
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="music.php" method="post">
-			<div class="am-form-group">  
+			<div class="am-form-group">
+				<label>按时长筛选：</label>
+				<?php
+						if(!empty($_POST['duration'])){
+							$out=$_POST['duration'];
+						}else if(!empty($_GET['duration'])){
+							$r = explode(':',$_GET['duration']);
+							$out = $r[1];
+						}else{
+							$out='';
+						}?>
+						<select name="duration">
+						<?php
+							if($out=='')
+								echo '<option value="" selected>请选择时长</option>';
+							else
+								echo '<option value="">请选择时长</option>';
+							if($out=="[0 TO 600]")
+								echo '<option value="[0 TO 600]" selected>10分钟以内</option>';
+							else
+								echo '<option value="[0 TO 600]">10分钟以内</option>';
+							if($out=="[601 TO 1800]")
+								echo '<option value="[601 TO 1800]" selected>10-30分钟</option>';
+							else
+								echo '<option value="[601 TO 1800]">10-30分钟</option>';
+							if($out=="[1801 TO 3600]")
+								echo '<option value="[1801 TO 3600]" selected>30-60分钟</option>';
+							else
+								echo '<option value="[1801 TO 3600]">30-60分钟</option>';
+							if($out=="[3601 TO 4200]")
+								echo '<option value="[3601 TO 4200]" selected>1小时以上</option>';
+							else
+								echo '<option value="[3601 TO 4200]">1小时以上</option>';
+					?>
+				</select>
 				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的乐曲" value="<?php 
 				if(!empty($_POST['keywords'])){
 					$out=$_POST['keywords'];
@@ -107,10 +141,17 @@
 				else{ 
 					$keywords = empty($_POST['keywords']) ? "music:*":"music:".$_POST['keywords'];
 				}
+				if(isset($_GET['duration'])){
+					$duration = $_GET['duration'];
+				}else{
+					$duration = empty($_POST['duration']) ? "":"duration:".$_POST['duration'];
+				}
+				$duration = urlencode($duration);
+				$fqwords = 'fq='.$duration;
 				//获取当前页数
 				$page = empty($_GET['page']) ? 1:$_GET['page'];
 				//获取结果和总记录数、总页数
-				$data=getcontent($keywords,$page);
+				$data=getfilter($keywords,$fqwords,$page);
 				$result = $data['result'];
 				$total = $data['total'];
 				$pages = $data['pages'];
@@ -128,16 +169,16 @@
 						<tr>
 							<td><a href="music_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo getfield($one['music_name']);?></a></td>   
 							<!--对于不确定有的字段，先判断这个字段有没有，再取值-->
-							<td><?php 
+							<?php 
 								if (isset($one['music_byArtist'])){
-									echo getfield($one['music_byArtist']);
+									$music_byArtist=getfield($one['music_byArtist']);
 								}else{
-									echo "--";
+									$music_byArtist="--";
 								}?>
-							</td>
+							<td><a href="redirect.php?keywords=person_name:<?php echo $music_byArtist; ?>"><?php echo $music_byArtist ?></td>
 							<td><?php 
 								if (isset($one['duration'])){
-									echo getfield($one['duration']);
+									echo getfield($one['duration'])."秒";
 								}else{
 									echo "--";
 								}?>

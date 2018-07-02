@@ -99,32 +99,32 @@
 					<tbody>
 						<hr>
 					<?php 
-						echo "<p>".getfield($one['music_name'])."</p>";
+						echo "<p><b>".getfield($one['music_name'])."</b></p>";
 						if (isset($one['music_byArtist'])){
-							echo "<p>演奏者：".getfield($one['music_byArtist'])."</p>";
+							echo '<p><b>演奏者：</b><u><a href="redirect.php?keywords=person_name:'.getfield($one[music_byArtist]).'">'.getfield($one[music_byArtist]).'</a></u></p>';
 						}else{
-							echo "<p>演奏者：未知</p>";
+							echo "<p><b>演奏者：</b>未知</p>";
 						}
 						if (isset($one['music_about']))
-							echo "<p>乐曲说明：".getfield($one['music_about'])."</p>";
+							echo "<p><b>乐曲说明：</b>".getfield($one['music_about'])."</p>";
 						else
-							echo "<p>乐曲说明：暂无</p>";
+							echo "<p><b>乐曲说明：</b>暂无</p>";
 						if (isset($one['duration']))
-							echo "<p>时长：".getfield($one['duration'])."秒</p>";
+							echo "<p><b>时长：</b>".getfield($one['duration'])."秒</p>";
 						else
-							echo "<p>时长：未知</p>";
+							echo "<p><b>时长：</b>未知</p>";
 						if (isset($one['contentSize']))
-							echo "<p>大小：".getfield($one['contentSize'])."MB</p>";
+							echo "<p><b>大小：</b>".getfield($one['contentSize'])."MB</p>";
 						else
-							echo "<p>大小：未知</p>";
+							echo "<p><b>大小：</b>未知</p>";
 						if (isset($one['provider']))
-							echo "<p>提供者：".getfield($one['provider'])."</p>";
+							echo "<p><b>提供者：</b>".getfield($one['provider'])."</p>";
 						else
-							echo "<p>提供者：未知</p>";
+							echo "<p><b>提供者：</b>未知</p>";
 						if (isset($one['fileFormat']))
-							echo "<p>文件类型：".getfield($one['fileFormat'])."</p>";
+							echo "<p><b>文件类型：</b>".getfield($one['fileFormat'])."</p>";
 						else
-							echo "<p>文件类型：未知</p>";
+							echo "<p><b>文件类型：</b>未知</p>";
 						echo '<u><a target="_blank" href="'.getfield($one['isBasedOn']).'">点击试听/下载</a></u>';
 					?>
 					</tbody>

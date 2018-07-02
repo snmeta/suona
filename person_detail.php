@@ -96,77 +96,83 @@
 				<div class="title1 cf">
 				</div>
 				<table class="am-table">
-				<?php
-					echo "<tr>";
-					echo "<td>";
-					if (isset($one['image'])){
-						echo '<center><img height="200" width="200" src="'.getfield($one['image']).'"/></center>';
-					}else{
-						echo  "无人物图片";
-					}
-					echo "</td>";
-					echo "<td>";
-					echo "<p><strong>姓名：</strong>".getfield($one['person_name'])."</p>";
-					//性别
-					echo "<strong>性别：</strong>".getfield($one['gender'])."</p>";
-					//民族
-					if (isset($one['ethnic'])){
-						echo "<p><strong>民族：</strong>".getfield($one['ethnic'])."</p>";
-					}else{
-						echo  "<p><strong>民族：暂无</strong></p>";
-					}
-					if (isset($one['homeLocation'])){
-						echo "<p><strong>家乡：</strong>".getfield($one['homeLocation'])."</p>";
-					}else{
-						echo  "<p><strong>家乡：暂无</strong></p>";
-					}
-					if (isset($one['birthDate'])){
-						echo "<p><strong>生日：</strong>".getfield($one['birthDate'])."</p>";
-					}else{
-						echo  "<p><strong>生日：暂无</strong></p>";
-					}
-					echo "</td>";
-					echo "</tr>";
-					echo "<tr>";
-					//人物作品 多值
-					if (isset($one['person_works'])){
-						echo "<p><strong>著名作品:<strong><p>";
-						for ($i=0;$i<count($one['person_works']);$i++)
-							echo " ".$one['person_works'][$i].";&nbsp";
-					}
-					else {
-						echo "<p><strong>著名作品：</strong>无<p>";
-					}
-               
-					//工作单位 多值
-					if (isset($one['affiliation'])){
-						echo "<p><strong>工作单位：</strong><p>";
-						for ($i=0;$i<count($one['affiliation']);$i++)
-							echo "<b>".$one['affiliation'][$i]."   &nbsp&nbsp";
-						}
-					else {
-						echo "<p>工作单位：未知<p>";
-					}
-					//人物生平 多值
-					if (isset($one['person_life'])){
-						echo "<p><strong>生平：</strong>";
-						for ($i=0;$i<count($one['person_life']);$i++)
-							echo "<p>".$one['person_life'][$i]."&nbsp&nbsp";
-					}
-					else {
-						echo "<p>生平：未知</p>";
-					}
-					//获得奖项 多值
-					if (isset($one['person_awards'])){
-						echo "<p><strong>所获奖项:</strong>";
-						for ($i=0;$i<count($one['person_awards']);$i++)
-							echo "&nbsp".$one['person_awards'][$i].";&nbsp&nbsp";
-						echo "</p>";
-					}
-					else {
-						echo "<p>所获奖项：未知<p>";
-					}
-					echo "</tr>";?>
+					<tr>
+						<td>
+						<?php
+							echo "<p><strong>姓名：</strong>".getfield($one['person_name'])."</p>";
+							//性别
+							echo "<strong>性别：</strong>".getfield($one['gender'])."</p>";
+							//民族
+							if (isset($one['ethnic'])){
+								echo "<p><strong>民族：</strong>".getfield($one['ethnic'])."</p>";
+							}else{
+								echo  "<p><strong>民族：</strong>暂无</p>";
+							}
+							if (isset($one['homeLocation'])){
+								echo "<p><strong>家乡：</strong>".getfield($one['homeLocation'])."</p>";
+							}else{
+								echo  "<p><strong>家乡：</strong>暂无</p>";
+							}
+							if (isset($one['birthDate'])){
+								$date=transdate($one['birthDate']); 
+								echo "<p><strong>生日：</strong>".$date['nyr']."</p>";
+							}else{
+								echo  "<p><strong>生日：</strong>暂无</p>";
+							}
+							echo "</td>";
+							echo "<td>";
+							if (isset($one['image'])){
+								echo '<center><img height="250" width="200" src="'.getfield($one['image']).'"/></center>';
+							}else{
+								echo  "无人物图片";
+							}?>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<?php
+							//人物作品 多值
+							if (isset($one['person_works'])){
+								echo "<p><strong>著名作品:</strong>";
+								for ($i=0;$i<count($one['person_works']);$i++)
+									echo " ".$one['person_works'][$i].";&nbsp";
+								echo "</p>";
+							}
+							else {
+								echo "<p><strong>著名作品：</strong>无</p>";
+							}
+					   
+							//工作单位 多值
+							if (isset($one['affiliation'])){
+								echo "<p><strong>工作单位：</strong>";
+								for ($i=0;$i<count($one['affiliation']);$i++)
+									echo $one['affiliation'][$i]."   &nbsp&nbsp";
+								echo "</p>";
+							}else {
+								echo "<p><strong>工作单位：</strong>未知</p>";
+							}
+							//人物生平 多值
+							if (isset($one['person_life'])){
+								echo "<p><strong>生平：</strong>";
+								for ($i=0;$i<count($one['person_life']);$i++)
+									echo "<p>".$one['person_life'][$i]."&nbsp&nbsp";
+								echo "</p>";
+							}
+							else {
+								echo "<p><strong>生平：</strong>未知</p>";
+							}
+							//获得奖项 多值
+							if (isset($one['person_awards'])){
+								echo "<p><strong>所获奖项:</strong>";
+								for ($i=0;$i<count($one['person_awards']);$i++)
+									echo "&nbsp".$one['person_awards'][$i].";&nbsp&nbsp";
+								echo "</p>";
+							}
+							else {
+								echo "<p><strong>所获奖项：</strong>未知</p>";
+							}?>
+						</td>
+					</tr>
 				</table>
 <?php		}
 		}

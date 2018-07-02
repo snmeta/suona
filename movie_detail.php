@@ -122,8 +122,17 @@
 								}else{
 									echo "<p>主演：未知</p>";
 								}
+								if (isset($one['duration'])){
+									$duration = (int)$one['duration'];
+									$hour = (int)($duration/3600);
+									$minute = (int)(($duration%3600)/60);
+									$second = (int)(($duration%3600)%60);
+									echo "<p>时长：".$hour."小时".$minute."分".$second."秒</p>";
+								}else {
+									echo "<p>时长：无</p>";
+								}
 								if (isset($one['description'])){
-										echo "<p>简介：".getfield($one['description'])."</p>";
+									echo "<p>简介：".getfield($one['description'])."</p>";
 								}else {
 									echo "<p>简介：无</p>";
 								}
