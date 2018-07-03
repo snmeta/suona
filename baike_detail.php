@@ -70,7 +70,7 @@
 		<!--搜索框-->
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="baike.php" method="post">
 			<div class="am-form-group">  
-				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的乐曲"></input>
+				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的内容"></input>
 				<button type="submit" name="submit" class="am-btn am-btn-secondary am-btn-sm">搜索</button>
 				<a href="baike.php" align="left"><u>返回结果页</u></a>
 			</div>

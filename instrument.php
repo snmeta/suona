@@ -70,6 +70,64 @@
 		<!--搜索框-->
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="instrument.php" method="post">
 			<div class="am-form-group">  
+				<label>按乐器音调筛选：</label>
+				<?php
+						if(!empty($_POST['instrument_toneRange_copy'])){
+							$out=$_POST['instrument_toneRange_copy'];
+						}else if(!empty($_GET['instrument_toneRange_copy'])){
+							$r = explode(':',$_GET['instrument_toneRange_copy']);
+							$out = $r[1];
+						}else{
+							$out='';
+						}?>
+						<select name="instrument_toneRange_copy">
+						<?php
+							if($out=='')
+								echo '<option value="" selected>请选择音调</option>';
+							else
+								echo '<option value="">请选择音调</option>';
+							if($out=="A调")
+								echo '<option value="A调" selected>A调</option>';
+							else
+								echo '<option value="A调">A调</option>';
+							if($out=="降A调")
+								echo '<option value="降A调" selected>降A调</option>';
+							else
+								echo '<option value="降A调">降A调</option>';
+							if($out=="降B调")
+								echo '<option value="降B调" selected>降B调</option>';
+							else
+								echo '<option value="降B调">降B调</option>';
+							if($out=="C调")
+								echo '<option value="C调" selected>C调</option>';
+							else
+								echo '<option value="C调">C调</option>';
+							if($out=="D调")
+								echo '<option value="D调" selected>D调</option>';
+							else
+								echo '<option value="D调">D调</option>';
+							if($out=="E调")
+								echo '<option value="E调" selected>E调</option>';
+							else
+								echo '<option value="E调">E调</option>';
+							if($out=="降E调")
+								echo '<option value="降E调" selected>降E调</option>';
+							else
+								echo '<option value="降E调">降E调</option>';
+							if($out=="F调")
+								echo '<option value="F调" selected>F调</option>';
+							else
+								echo '<option value="F调">F调</option>';
+							if($out=="大G调")
+								echo '<option value="大G调" selected>大G调</option>';
+							else
+								echo '<option value="大G调">大G调</option>';
+							if($out=="小G调")
+								echo '<option value="小G调" selected>小G调</option>';
+							else
+								echo '<option value="小G调">小G调</option>';
+					?>
+				</select>
 				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的乐器" value="<?php 
 				if(!empty($_POST['keywords'])){
 					$out=$_POST['keywords'];
@@ -104,39 +162,47 @@
 					$keywords = $_GET['keywords'];
 				}
 				else{ 
-					$keywords = empty($_POST['keywords']) ? "instrument:*":"instrument:".$_POST['keywords'];}
-					//获取当前页数
-					$page = empty($_GET['page']) ? 1:$_GET['page'];
-					//获取结果和总记录数、总页数
-					$data=getcontent($keywords,$page);
-					$result = $data['result'];
-					$total = $data['total'];
-					$pages = $data['pages'];
-					echo "共".$total."条结果。";
-					//判断是否有结果
-					if (count($result)==0){
-						echo '
+					$keywords = empty($_POST['keywords']) ? "instrument:*":"instrument:".$_POST['keywords'];
+				}
+				if(isset($_GET['instrument_toneRange_copy'])){
+					$instrument_toneRange_copy = $_GET['instrument_toneRange_copy'];
+				}else{
+					$instrument_toneRange_copy = empty($_POST['instrument_toneRange_copy']) ? "":"instrument_toneRange_copy:".$_POST['instrument_toneRange_copy'];
+				}
+				$instrument_toneRange_copy = urlencode($instrument_toneRange_copy);
+				$fqwords = 'fq='.$instrument_toneRange_copy;
+				//获取当前页数
+				$page = empty($_GET['page']) ? 1:$_GET['page'];
+				//获取结果和总记录数、总页数
+				$data=getfilter($keywords,$fqwords,$page);
+				$result = $data['result'];
+				$total = $data['total'];
+				$pages = $data['pages'];
+				echo "共".$total."条结果。";
+				//判断是否有结果
+				if (count($result)==0){
+					echo '
 						<tr>
 							<center>未找到相关内容</center>
 						</tr>';
-					}
-					//若有，输出结果
-					else{
-						foreach ($result as $one){   ?>
-							<tr>
-								<td><a href="instrument_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo getfield($one['instrument_name']);?></a></td>   
-								<!--对于不确定有的字段，先判断这个字段有没有，再取值-->
-								<td><?php 
-									if (isset($one['instrument_materials'])){
-										echo getfield($one['instrument_materials']);
-									}else{
-										echo "--";
-									}
-								?></td>
-								<td><?php echo getfield($one['resource']);?></td>
-							</tr>
-				<?php	}
-					}?>	
+				}
+				//若有，输出结果
+				else{
+					foreach ($result as $one){   ?>
+						<tr>
+							<td><a href="instrument_detail.php?id=<?php echo getfield($one['id']);?>"><?php echo getfield($one['instrument_name']);?></a></td> 
+							<!--对于不确定有的字段，先判断这个字段有没有，再取值-->
+							<td><?php 
+								if (isset($one['instrument_materials'])){
+									echo getfield($one['instrument_materials']);
+								}else{
+									echo "--";
+								}
+						?>	</td>
+							<td><?php echo getfield($one['resource']);?></td>
+						</tr>
+			<?php	}
+				}?>	
 			</tbody>
 		</table>
 	</div>
