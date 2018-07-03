@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="assets/css/app.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/swiper.min.css">
+  <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
 </head>
 
 <body id="blog">
@@ -285,5 +286,10 @@ if($total>20){
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script>
+$( "input[name='keywords']:first" ).autocomplete({source: "autocomplete.php"});
+</script>
+
 </body>
 </html>
