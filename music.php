@@ -71,6 +71,39 @@
 		<!--搜索框-->
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="music.php" method="post">
 			<div class="am-form-group">
+				<label>排序：</label>
+				<?php
+						if(!empty($_POST['sort'])){
+							$out=$_POST['sort'];
+						}else if(!empty($_GET['sort'])){
+							$out = $_GET['sort'];
+						}else{
+							$out='';
+						}?>
+						<select name="sort">
+						<?php
+							if($out=='')
+								echo '<option value="" selected>默认排序</option>';
+							else
+								echo '<option value="">默认排序</option>';
+							if($out=="duration asc")
+								echo '<option value="duration asc" selected>按时长升序</option>';
+							else
+								echo '<option value="duration asc">按时长升序</option>';
+							if($out=="duration desc")
+								echo '<option value="duration desc" selected>按时长降序</option>';
+							else
+								echo '<option value="duration desc">按时长降序</option>';
+							if($out=="uploadDate asc")
+								echo '<option value="uploadDate asc" selected>按日期升序</option>';
+							else
+								echo '<option value="uploadDate asc">按日期升序</option>';
+							if($out=="uploadDate desc")
+								echo '<option value="uploadDate desc" selected>按日期降序</option>';
+							else
+								echo '<option value="uploadDate desc">按日期降序</option>';
+					?>
+				</select>
 				<label>按时长筛选：</label>
 				<?php
 						if(!empty($_POST['duration'])){
@@ -147,7 +180,23 @@
 					$duration = empty($_POST['duration']) ? "":"duration:".$_POST['duration'];
 				}
 				$duration = urlencode($duration);
-				$fqwords = 'fq='.$duration;
+				if(isset($_GET['sort'])){
+					$sort = $_GET['sort'];
+					$sort = urlencode($sort);
+					if($sort!="")
+						$fqwords = 'fq='.$duration.'&sort='.$sort;
+					else
+						$fqwords = 'fq='.$duration;
+				}else if(isset($_POST['sort'])){
+					$sort = $_POST['sort'];
+					$sort = urlencode($sort);
+					if($sort!="")
+						$fqwords = 'fq='.$duration.'&sort='.$sort;
+					else
+						$fqwords = 'fq='.$duration;
+				}else{
+					$fqwords = 'fq='.$duration;
+				}
 				//获取当前页数
 				$page = empty($_GET['page']) ? 1:$_GET['page'];
 				//获取结果和总记录数、总页数
@@ -197,10 +246,10 @@ if($total>20){
 ?>
 	<div class="am-g am-g-fixed ">
 		<ul class="am-pagination am-avg-sm-8 am-g-centered">
-			<li class="am-pagination-next"><a href="<?php echo 'music.php?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a></li>
-			<li class="am-pagination-next"><a href="<?php echo 'music.php?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a></li>
-			<li class="am-pagination-next"><a href="<?php echo 'music.php?page='.($page-1).'&keywords='.$keywords;?>">上一页</a></li>
-			<li class="am-pagination-next"><a href="<?php echo 'music.php?page=1&keywords='.$keywords;?>">首页 </a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'music.php?page='.$pages.'&keywords='.$keywords.'&duration='.$duration.'&sort='.$sort;?>">尾页 </a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'music.php?page='.($page+1).'&keywords='.$keywords.'&duration='.$duration.'&sort='.$sort;?>">下一页 </a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'music.php?page='.($page-1).'&keywords='.$keywords.'&duration='.$duration.'&sort='.$sort;?>">上一页</a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'music.php?page=1&keywords='.$keywords.'&duration='.$duration.'&sort='.$sort;?>">首页 </a></li>
 		</ul>
 	</div>
 <?php

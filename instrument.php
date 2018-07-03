@@ -213,10 +213,10 @@ if($total>20){
 ?>
 	<div class="am-g am-g-fixed ">
 		<ul class="am-pagination am-avg-sm-8 am-g-centered">
-			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.$pages.'&keywords='.$keywords ;?>">尾页</a>         </li>
-			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.($page+1).'&keywords='.$keywords;?>">下一页</a></li>
-			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.($page-1).'&keywords='.$keywords;?>">上一页</a></li>
-			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page=1&keywords='.$keywords;?>">首页 </a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.$pages.'&keywords='.$keywords.'&instrument_toneRange_copy'.$instrument_toneRange_copy;?>">尾页</a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.($page+1).'&keywords='.$keywords.'&instrument_toneRange_copy'.$instrument_toneRange_copy;?>">下一页</a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page='.($page-1).'&keywords='.$keywords.'&instrument_toneRange_copy'.$instrument_toneRange_copy;?>">上一页</a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'instrument.php?page=1&keywords='.$keywords.'&instrument_toneRange_copy'.$instrument_toneRange_copy;?>">首页 </a></li>
 		</ul>
 	</div>
 <?php

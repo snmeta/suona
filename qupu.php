@@ -273,10 +273,10 @@ if($total>20){
 ?>
 	<div class="am-g am-g-fixed ">
 		<ul class="am-pagination am-avg-sm-8 am-g-centered">
-			<li class="am-pagination-next"><a href="<?php echo 'qupu.php?page='.$pages.'&keywords='.$keywords ;?>">尾页</a>         </li>
-			<li class="am-pagination-next"><a href="<?php echo 'qupu.php?page='.($page+1).'&keywords='.$keywords;?>">下一页</a></li>
-			<li class="am-pagination-next"><a href="<?php echo 'qupu.php?page='.($page-1).'&keywords='.$keywords;?>">上一页</a></li>
-			<li class="am-pagination-next"><a href="<?php echo 'qupu.php?page=1&keywords='.$keywords;?>">首页 </a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'qupu.php?page='.$pages.'&keywords='.$keywords.'&score_type_author='.$score_type_author;?>">尾页</a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'qupu.php?page='.($page+1).'&keywords='.$keywords.'&score_type_author='.$score_type_author;?>">下一页</a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'qupu.php?page='.($page-1).'&keywords='.$keywords.'&score_type_author='.$score_type_author;?>">上一页</a></li>
+			<li class="am-pagination-next"><a href="<?php echo 'qupu.php?page=1&keywords='.$keywords.'&score_type_author='.$score_type_author;?>">首页 </a></li>
 		</ul>
 	</div>
 <?php

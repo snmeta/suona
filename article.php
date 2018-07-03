@@ -71,7 +71,40 @@
     <div class="column_box">
 	<!--搜索框-->
 	<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="article.php" method="post">
-			<div class="am-form-group">  
+			<div class="am-form-group"> 
+				<label>排序：</label>
+				<?php
+						if(!empty($_POST['sort'])){
+							$out=$_POST['sort'];
+						}else if(!empty($_GET['sort'])){
+							$out = $_GET['sort'];
+						}else{
+							$out='';
+						}?>
+						<select name="sort">
+						<?php
+							if($out=='')
+								echo '<option value="" selected>默认排序</option>';
+							else
+								echo '<option value="">默认排序</option>';
+							if($out=="publicationDate asc")
+								echo '<option value="publicationDate asc" selected>按日期升序</option>';
+							else
+								echo '<option value="publicationDate asc">按日期升序</option>';
+							if($out=="publicationDate desc")
+								echo '<option value="publicationDate desc" selected>按日期降序</option>';
+							else
+								echo '<option value="publicationDate desc">按日期降序</option>';
+							if($out=="download asc")
+								echo '<option value="download asc" selected>按下载量升序</option>';
+							else
+								echo '<option value="download asc">按下载量升序</option>';
+							if($out=="download desc")
+								echo '<option value="download desc" selected>按下载量降序</option>';
+							else
+								echo '<option value="download desc">按下载量降序</option>';
+					?>
+				</select>			
 			<label>按文章类型筛选：</label>
 				<?php
 						if(!empty($_POST['article_publitionType'])){
@@ -153,7 +186,23 @@
 		$article_publitionType = empty($_POST['article_publitionType']) ? "":"article_publitionType:".$_POST['article_publitionType'];
 	}
 	$article_publitionType = urlencode($article_publitionType);
-	$fqwords = 'fq='.$article_publitionType;
+	if(isset($_GET['sort'])){
+		$sort = $_GET['sort'];
+		$sort = urlencode($sort);
+		if($sort!="")
+			$fqwords = 'fq='.$article_publitionType.'&sort='.$sort;
+		else
+			$fqwords = 'fq='.$article_publitionType;
+	}else if(isset($_POST['sort'])){
+		$sort = $_POST['sort'];
+		$sort = urlencode($sort);
+		if($sort!="")
+			$fqwords = 'fq='.$article_publitionType.'&sort='.$sort;
+		else
+			$fqwords = 'fq='.$article_publitionType;
+	}else{
+			$fqwords = 'fq='.$article_publitionType;
+	}
 	//获取当前页数
 	$page = empty($_GET['page']) ? 1:$_GET['page'];
 	//获取结果和总记录数、总页数
@@ -209,10 +258,10 @@
 <!-- 分页-->
 <div class="am-g am-g-fixed ">
 	<ul class="am-pagination am-avg-sm-8 am-g-centered">
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page-1).'&keywords='.$keywords;?>">上一页</a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page=1&keywords='.$keywords;?>">首页 </a>         </li>
+		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.$pages.'&keywords='.$keywords.'&article_publitionType='.$article_publitionType.'&sort='.$sort;?>">尾页 </a>         </li>
+		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page+1).'&keywords='.$keywords.'&article_publitionType='.$article_publitionType.'&sort='.$sort;?>">下一页 </a>         </li>
+		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page-1).'&keywords='.$keywords.'&article_publitionType='.$article_publitionType.'&sort='.$sort;?>">上一页</a>         </li>
+		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page=1&keywords='.$keywords.'&article_publitionType='.$article_publitionType.'&sort='.$sort;?>">首页 </a>         </li>
 	</ul>
 </div>
 <!-- content end -->

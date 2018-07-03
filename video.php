@@ -71,7 +71,48 @@
 	<div class="column_box">
 		<!--搜索框-->
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="video.php" method="post">
-			<div class="am-form-group">  
+			<div class="am-form-group"> 
+				<label>排序：</label>
+				<?php
+						if(!empty($_POST['sort'])){
+							$out=$_POST['sort'];
+						}else if(!empty($_GET['sort'])){
+							$out = $_GET['sort'];
+						}else{
+							$out='';
+						}?>
+						<select name="sort">
+						<?php
+							if($out=='')
+								echo '<option value="" selected>默认排序</option>';
+							else
+								echo '<option value="">默认排序</option>';
+							if($out=="duration asc")
+								echo '<option value="duration asc" selected>按时长升序</option>';
+							else
+								echo '<option value="duration asc">按时长升序</option>';
+							if($out=="duration desc")
+								echo '<option value="duration desc" selected>按时长降序</option>';
+							else
+								echo '<option value="duration desc">按时长降序</option>';
+							if($out=="uploadDate asc")
+								echo '<option value="uploadDate asc" selected>按日期升序</option>';
+							else
+								echo '<option value="uploadDate asc">按日期升序</option>';
+							if($out=="uploadDate desc")
+								echo '<option value="uploadDate desc" selected>按日期降序</option>';
+							else
+								echo '<option value="uploadDate desc">按日期降序</option>';
+							if($out=="play_count asc")
+								echo '<option value="play_count asc" selected>按播放次数升序</option>';
+							else
+								echo '<option value="play_count asc">按播放次数升序</option>';
+							if($out=="play_count desc")
+								echo '<option value="play_count desc" selected>按播放次数降序</option>';
+							else
+								echo '<option value="play_count desc">按播放次数降序</option>';
+					?>
+				</select>
 				<label>按视频类型筛选：</label>
 					<?php
 						if(!empty($_POST['video_type'])){
@@ -213,7 +254,23 @@
 					$duration = empty($_POST['duration']) ? "":"duration:".$_POST['duration'];
 				}
 				$duration = urlencode($duration);
-				$fqwords = 'fq='.$duration.'&fq='.$video_type;
+				if(isset($_GET['sort'])){
+					$sort = $_GET['sort'];
+					$sort = urlencode($sort);
+					if($sort!="")
+						$fqwords = 'fq='.$duration.'&fq='.$video_type.'&sort='.$sort;
+					else
+						$fqwords = 'fq='.$duration.'&fq='.$video_type;
+				}else if(isset($_POST['sort'])){
+					$sort = $_POST['sort'];
+					$sort = urlencode($sort);
+					if($sort!="")
+						$fqwords = 'fq='.$duration.'&fq='.$video_type.'&sort='.$sort;
+					else
+						$fqwords = 'fq='.$duration.'&fq='.$video_type;
+				}else{
+					$fqwords = 'fq='.$duration.'&fq='.$video_type;
+				}
 				//获取当前页数
 				$page = empty($_GET['page']) ? 1:$_GET['page'];
 				//获取结果和总记录数、总页数
@@ -271,10 +328,10 @@ if($total>20){
 ?>
 	<div class="am-g am-g-fixed ">
 		<ul class="am-pagination am-avg-sm-8 am-g-centered">
-			<li class="am-pagination-next"><a href="<?php echo 'video.php?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a>         </li>
-			<li class="am-pagination-next"><a href="<?php echo 'video.php?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a>         </li>
-			<li class="am-pagination-next"><a href="<?php echo 'video.php?page='.($page-1).'&keywords='.$keywords;?>">上一页</a>         </li>
-			<li class="am-pagination-next"><a href="<?php echo 'video.php?page=1&keywords='.$keywords;?>">首页 </a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'video.php?page='.$pages.'&keywords='.$keywords.'&duration='.$duration.'&video_type='.$video_type.'&sort='.$sort;?>">尾页 </a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'video.php?page='.($page+1).'&keywords='.$keywords.'&duration='.$duration.'&video_type='.$video_type.'&sort='.$sort;?>">下一页 </a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'video.php?page='.($page-1).'&keywords='.$keywords.'&duration='.$duration.'&video_type='.$video_type.'&sort='.$sort;?>">上一页</a>         </li>
+			<li class="am-pagination-next"><a href="<?php echo 'video.php?page=1&keywords='.$keywords.'&duration='.$duration.'&video_type='.$video_type.'&sort='.$sort;?>">首页 </a>         </li>
 		</ul>
 	</div>
 <?php
