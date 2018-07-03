@@ -72,6 +72,44 @@
 	<!--搜索框-->
 	<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="article.php" method="post">
 			<div class="am-form-group">  
+			<label>按文章类型筛选：</label>
+				<?php
+						if(!empty($_POST['article_publitionType'])){
+							$out=$_POST['article_publitionType'];
+						}else if(!empty($_GET['article_publitionType'])){
+							$r = explode(':',$_GET['article_publitionType']);
+							$out = $r[1];
+						}else{
+							$out='';
+						}?>
+						<select name="article_publitionType">
+						<?php
+							if($out=='')
+								echo '<option value="" selected>全部文章</option>';
+							else
+								echo '<option value="">全部文章</option>';
+							if($out=="期刊")
+								echo '<option value="期刊" selected>期刊</option>';
+							else
+								echo '<option value="期刊">期刊</option>';
+							if($out=="报纸")
+								echo '<option value="报纸" selected>报纸</option>';
+							else
+								echo '<option value="报纸">报纸</option>';
+							if($out=="会议")
+								echo '<option value="会议" selected>会议</option>';
+							else
+								echo '<option value="会议">会议</option>';
+							if($out=="硕士")
+								echo '<option value="硕士" selected>硕士论文</option>';
+							else
+								echo '<option value="硕士">硕士论文</option>';
+							if($out=="博士")
+								echo '<option value="博士" selected>博士论文</option>';
+							else
+								echo '<option value="博士">博士论文</option>';
+					?>
+				</select>
 				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的文章" value="<?php 
 				if(!empty($_POST['keywords'])){
 					$out=$_POST['keywords'];
@@ -109,10 +147,17 @@
 	else{ 
 		$keywords = empty($_POST['keywords']) ? "article:*":"article:".$_POST['keywords'];
 	}
+	if(isset($_GET['article_publitionType'])){
+		$article_publitionType = $_GET['article_publitionType'];
+	}else{
+		$article_publitionType = empty($_POST['article_publitionType']) ? "":"article_publitionType:".$_POST['article_publitionType'];
+	}
+	$article_publitionType = urlencode($article_publitionType);
+	$fqwords = 'fq='.$article_publitionType;
 	//获取当前页数
 	$page = empty($_GET['page']) ? 1:$_GET['page'];
 	//获取结果和总记录数、总页数
-	$data=getcontent($keywords,$page);
+	$data=getfilter($keywords,$fqwords,$page);
 	$result = $data['result'];
 	$total = $data['total'];
 	$pages = $data['pages'];

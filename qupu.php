@@ -69,6 +69,120 @@
 	<!--搜索框-->
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="qupu.php" method="post">
 			<div class="am-form-group">  
+				<label>按曲谱类型筛选：</label>
+					<?php
+						if(!empty($_POST['score_type_author'])){
+							$out=$_POST['score_type_author'];
+						}else if(!empty($_GET['score_type_author'])){
+							$r = explode(':',$_GET['score_type_author']);
+							$out = $r[1];
+						}else{
+							$out='';
+						}?>
+						<select name="score_type_author">
+						<?php
+							if($out=='')
+								echo '<option value="" selected>全部曲谱</option>';
+							else
+								echo '<option value="">全部曲谱</option>';
+							if($out=="民歌曲谱")
+								echo '<option value="民歌曲谱" selected>民歌曲谱</option>';
+							else
+								echo '<option value="民歌曲谱">民歌曲谱</option>';
+							if($out=="少儿曲谱")
+								echo '<option value="少儿曲谱" selected>少儿曲谱</option>';
+							else
+								echo '<option value="少儿曲谱">少儿曲谱</option>';
+							if($out=="谱友记谱")
+								echo '<option value="谱友记谱" selected>谱友记谱</option>';
+							else
+								echo '<option value="谱友记谱">谱友记谱</option>';
+							if($out=="钢琴乐谱")
+								echo '<option value="钢琴乐谱" selected>钢琴乐谱</option>';
+							else
+								echo '<option value="钢琴乐谱">钢琴乐谱</option>';
+							if($out=="原创曲谱")
+								echo '<option value="原创曲谱" selected>原创曲谱</option>';
+							else
+								echo '<option value="原创曲谱">原创曲谱</option>';
+							if($out=="合唱曲谱")
+								echo '<option value="合唱曲谱" selected>合唱曲谱</option>';
+							else 
+								echo '<option value="合唱曲谱">合唱曲谱</option>';
+							if($out=="其他乐谱")
+								echo '<option value="其他乐谱" selected>其他乐谱</option>';
+							else
+								echo '<option value="其他乐谱">其他乐谱</option>';
+							if($out=="个人园地")
+								echo '<option value="个人园地" selected>个人园地</option>';
+							else
+								echo '<option value="个人园地">个人园地</option>';
+							if($out=="谱友上传")
+								echo '<option value="谱友上传" selected>谱友上传</option>';
+							else
+								echo '<option value="谱友上传">谱友上传</option>';
+							if($out=="粉蝶儿一堂")
+								echo '<option value="粉蝶儿一堂" selected>粉蝶儿一堂</option>';
+							else
+								echo '<option value="粉蝶儿一堂">粉蝶儿一堂</option>';
+							if($out=="五供养一堂")
+								echo '<option value="五供养一堂" selected>五供养一堂</option>';
+							else
+								echo '<option value="五供养一堂">五供养一堂</option>';
+							if($out=="拾牌名一堂")
+								echo '<option value="拾牌名一堂" selected>拾牌名一堂</option>';
+							else
+								echo '<option value="拾牌名一堂">拾牌名一堂</option>';
+							if($out=="工尺曲谱")
+								echo '<option value="工尺曲谱" selected>工尺曲谱</option>';
+							else
+								echo '<option value="工尺曲谱">工尺曲谱</option>';
+							if($out=="练习乐谱")
+								echo '<option value="练习乐谱" selected>练习乐谱</option>';
+							else
+								echo '<option value="练习乐谱">练习乐谱</option>';
+							if($out=="民间乐曲")
+								echo '<option value="民间乐曲" selected>民间乐曲</option>';
+							else
+								echo '<option value="民间乐曲">民间乐曲</option>';
+							if($out=="戏曲曲牌")
+								echo '<option value="戏曲曲牌" selected>戏曲曲牌</option>';
+							else
+								echo '<option value="戏曲曲牌">戏曲曲牌</option>';
+							if($out=="民乐类")
+								echo '<option value="民乐类" selected>民乐类</option>';
+							else
+								echo '<option value="民乐类">民乐类</option>';
+							if($out=="潮州音乐")
+								echo '<option value="潮州音乐" selected>潮州音乐</option>';
+							else
+								echo '<option value="潮州音乐">潮州音乐</option>';
+							if($out=="柳子戏曲牌")
+								echo '<option value="柳子戏曲牌" selected>柳子戏曲牌</option>';
+							else
+								echo '<option value="柳子戏曲牌">柳子戏曲牌</option>';
+							if($out=="泣颜回一堂")
+								echo '<option value="泣颜回一堂" selected>泣颜回一堂</option>';
+							else
+								echo '<option value="泣颜回一堂">泣颜回一堂</option>';
+							if($out=="醉花阴一堂")
+								echo '<option value="醉花阴一堂" selected>醉花阴一堂</option>';
+							else
+								echo '<option value="醉花阴一堂">醉花阴一堂</option>';
+							if($out=="八仙贺寿一堂")
+								echo '<option value="八仙贺寿一堂" selected>八仙贺寿一堂</option>';
+							else
+								echo '<option value="八仙贺寿一堂">八仙贺寿一堂</option>';
+							if($out=="普天乐一堂")
+								echo '<option value="普天乐一堂" selected>普天乐一堂</option>';
+							else
+								echo '<option value="普天乐一堂">普天乐一堂</option>';
+							if($out=="大还琢一堂")
+								echo '<option value="大还琢一堂" selected>大还琢一堂</option>';
+							else
+								echo '<option value="大还琢一堂">大还琢一堂</option>';
+					?>
+				</select>
 				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的乐谱" value="<?php 
 				if(!empty($_POST['keywords'])){
 					$out=$_POST['keywords'];
@@ -105,10 +219,17 @@
 	else{ 
 		$keywords = empty($_POST['keywords']) ? "score:*":"score:".$_POST['keywords'];
 	}
+	if(isset($_GET['score_type_author'])){
+		$score_type_author = $_GET['score_type_author'];
+	}else{
+		$score_type_author = empty($_POST['score_type_author']) ? "":"score_type_author:".$_POST['score_type_author'];
+	}
+	$score_type_author = urlencode($score_type_author);
+	$fqwords = 'fq='.$score_type_author;
 	//获取当前页数
 	$page = empty($_GET['page']) ? 1:$_GET['page'];
 	//获取结果和总记录数、总页数
-	$data=getcontent($keywords,$page);
+	$data=getfilter($keywords,$fqwords,$page);
 	$result = $data['result'];
 	$total = $data['total'];
 	$pages = $data['pages'];
