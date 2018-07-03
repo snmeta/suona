@@ -71,6 +71,31 @@
 		<!--搜索框-->
 		<form class="am-topbar-form am-topbar-right am-form-inline" role="search" action="person.php" method="post">
 			<div class="am-form-group">  
+				<label>按性别筛选：</label>
+				<?php
+				if(!empty($_POST['gender'])){
+					$out=$_POST['gender'];
+				}else if(!empty($_GET['gender'])){
+					$r = explode(':',$_GET['gender']);
+					$out = $r[1];
+				}else{
+					$out='';
+				}?>
+				<select name="gender">
+				<?php
+					if($out=='')
+						echo '<option value="" selected>全部</option>';
+					else
+						echo '<option value="">全部</option>';
+					if($out=="男")
+						echo '<option value="男" selected>男</option>';
+					else
+						echo '<option value="男">男</option>';
+					if($out=="女")
+						echo '<option value="女" selected>女</option>';
+					else
+						echo '<option value="女">女</option>';?>
+				</select>
 				<input type="text" class="am-form-field am-input-sm" name="keywords" placeholder="请输入需要搜索的人物" value="<?php 
 				if(!empty($_POST['keywords'])){
 					$out=$_POST['keywords'];
@@ -98,10 +123,17 @@
 				}else{ 
 					$keywords = empty($_POST['keywords']) ? "person:*":"person:".$_POST['keywords'];
 				}
+				if(isset($_GET['gender'])){
+					$gender = $_GET['gender'];
+				}else{
+					$gender = empty($_POST['gender']) ? "":"gender:".$_POST['gender'];
+				}
+				$gender = urlencode($gender);
+				$fqwords = 'fq='.$gender;
 				//获取当前页数
 				$page = empty($_GET['page']) ? 1:$_GET['page'];
 				//获取结果和总记录数、总页数
-				$data=getcontent($keywords,$page);
+				$data=getfilter($keywords,$fqwords,$page);
 				$result = $data['result'];
 				$total = $data['total'];
 				$pages = $data['pages'];
@@ -141,10 +173,10 @@
 <!-- 分页-->
 <div class="am-g am-g-fixed ">
 	<ul class="am-pagination am-avg-sm-8 am-g-centered">
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.$pages.'&keywords='.$keywords ;?>">尾页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page+1).'&keywords='.$keywords;?>">下一页 </a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page-1).'&keywords='.$keywords;?>">上一页</a>         </li>
-		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page=1&keywords='.$keywords;?>">首页 </a>         </li>
+		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.$pages.'&keywords='.$keywords.'&gender='.$gender;?>">尾页 </a>         </li>
+		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page+1).'&keywords='.$keywords.'&gender='.$gender;?>">下一页 </a>         </li>
+		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page='.($page-1).'&keywords='.$keywords.'&gender='.$gender;?>">上一页</a>         </li>
+		<li class="am-pagination-next"><a href="<?php echo $_SERVER["PHP_SELF"].'?page=1&keywords='.$keywords.'&gender='.$gender;?>">首页 </a>         </li>
 	</ul>
 </div>
 <!-- content end -->

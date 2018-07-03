@@ -2,8 +2,6 @@
 function getcontent($keywords,$page){
 	//关键词
 	$query=urlencode($keywords);
-	//用于筛选
-	$fqwords=urlencode($fqwords);
 	//用红色字体高亮
 	$pre = urlencode("<font color='red'>");
 	$post = urlencode("</font>");
